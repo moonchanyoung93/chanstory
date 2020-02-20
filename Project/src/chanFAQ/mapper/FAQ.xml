@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chanfaq">
+	 <select id="listfaq" resultType="chanFAQ.FaqDTO">
+    select *from(select A.*, rownum as rn from (
+    	select num,writer,subject,reg_date,readcount
+		,filename,filesize,down,re_level
+		,(select count(*) from chanfaq_comment
+		where board_num=num) comment_count, show
+		from faq_chan
+		order by ref desc, re_step
+    	)A
+    )
+    where rn between #{start} and #{end}
+  </select>
+	
+
+	<select id="count_faq" resultType="int">
+	  select count(*) from faq_chan
+	</select>
+	
+	<select id="searchList_faq" resultType="chanFAQ.FaqDTO">
+	  select num,writer,subject,reg_date,readcount
+	  ,filename,filesize,down,re_level
+			,(select count(*) from chanfaq_comment 
+			where board_num=num) comment_count, show
+		from faq_chan
+		<choose>
+		  <when test="search_option != 'all'">
+		    where ${search_option} like #{keyword} and show='y'
+		  </when>
+		  <otherwise>
+		    where ( writer like #{keyword} 
+		    or subject like #{keyword} 
+		    or content like #{keyword} ) and show='y'
+		  </otherwise>
+		</choose>
+		order by ref desc, re_step
+	</select>
+	
+	  <insert id="insert_faq">
+    insert into faq_chan
+			(num,writer,subject,password,ref,re_step,re_level
+			,content,ip,filename,filesize)
+		values
+		( (select nvl(max(num)+1,1) from faq_chan)
+		 ,#{writer},#{subject},#{password}
+		 ,(select nvl(max(num)+1,1) from faq_chan)
+		 ,1,0,#{content},#{ip},#{filename},#{filesize} )
+  </insert>
+  
+  <update id="plusReadCount_faq">
+    update faq_chan set readcount=readcount+1 
+    where num=#{num}
+  </update>
+  
+   <select id="view_faq" resultType="chanFAQ.FaqDTO">
+    select * from faq_chan
+    where num=#{num}
+  </select>
+  
+  <update id="updateStep_faq">
+	  update faq_chan
+		set re_step=re_step+1
+		where ref=#{ref} and re_step >= #{re_step}
+	</update>
+	
+	<insert id="reply_faq">
+	  insert into faq_chan
+			(num,writer,subject,password,ref,re_step,re_level
+			,content,ip,filename,filesize)
+		values
+		( (select nvl(max(num)+1,1) from faq_chan)
+		 ,#{writer},#{subject},#{password}
+		 ,#{ref},#{re_step},#{re_level}
+		 ,#{content},#{ip},#{filename},#{filesize} )
+	</insert>
+	
+	 <select id="pass_check_faq" resultType="String">
+	  select password from faq_chan
+	  where num=#{num} and password=#{password}
+	</select>
+	
+	<select id="getFileName_faq" resultType="String">
+    select filename
+    from faq_chan
+    where num=#{num}
+  </select>
+  
+  	<update id="update_faq">
+	  update faq_chan
+		set writer=#{writer}, subject=#{subject}
+		 , content=#{content}, filename=#{filename}
+		 , filesize=#{filesize}, down=#{down}
+		where num=#{num}
+	</update>
+	
+	<delete id="delete_faq">
+	delete from faq_chan where num=#{num}
+	</delete>
+	
+	<insert id="commentAdd_faq">
+	  insert into chanfaq_comment
+		(comment_num,board_num,writer,content) values
+		((select nvl(max(comment_num)+1,1) from chanfaq_comment)
+		, #{board_num}, #{writer}, #{content})
+	</insert>
+	
+	 <select id="commentList_faq" resultType="chanFAQ.FaqDTO">
+		select * from chanfaq_comment 
+		where board_num=#{num}
+	</select>	
+	
+	<update id="plusDown_faq">
+    update faq_chan set down=down+1 where num=#{num} 
+  </update>
+	
+  
+	
+	
+	
+	
+
+</mapper>

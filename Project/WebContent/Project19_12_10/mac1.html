@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>(주) 맥</title>
+<style type="text/css">
+* {
+	margin: auto;
+}
+
+header {
+	height: 40px;
+	background-color: #cce6ff;
+	border-bottom: 1px solid #253342;
+	border-top: 1px solid #253342;
+	width: auto;
+}
+
+#menudiv1{
+word-spacing: 30px;
+}
+.menudiv2 {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.menu {
+	float: center;
+	list-style-type: none;
+	padding-left: 32%;
+}
+
+.menu>li {
+	float: left;
+	border: 1px solid #cce6ff;
+}
+
+.menu>li>a {
+	font-size: 1.37em;
+	font-weight: bold;
+	padding: 30px 20px;
+	text-align: center;
+	text-decoration: none;
+}
+
+.menu>li a:hover {
+	text-decoration: underline;
+	color: red;
+}
+
+.submenu {
+	font-size: 13px;
+	list-style-type: none;
+	background-color: #cce6ff;
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+}
+
+.submenu>li {
+	padding: 5px 16px;
+	font-weight: bold;
+}
+
+.submenu>li>a {
+	text-decoration: none;
+	display: block;
+}
+
+.menu>li:hover .submenu {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* image 본문 */
+#image {
+	background-image: url("global.jpg");
+	background-size: cover;
+	color: #00004d;
+	height: 400px;
+	padding-top: 5px;
+	border: 1px solid;
+}
+
+#image>#p0 {
+	text-align: center;
+	font-size: 68px;
+	font-weight: bold;
+	padding-top: 60px;
+}
+
+#image>#p1 {
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#image>#p2 {
+	text-align: center;
+	font-size: 26px;
+	text-decoration: none;
+	font-weight: bold;
+	border: 2px solid white;
+	border-radius: 60px;
+	color: #00004d;
+	width: 150px;
+	margin: auto;
+	padding-bottom: 5px;
+}
+
+#image>#p2>a {
+	text-decoration: blink;
+	color: #00004d;
+}
+
+#image>#p2:hover {
+	background-color: white;
+}
+
+
+/* 편하게보기 */
+.easy {
+	list-style-type: none;
+	width: 30%;
+	height: 200px;
+	background-color: #cce6ff;
+	margin-left: 230px;
+	float: left;
+	border: 1px solid;
+	text-align: center;
+}
+
+/* footer */
+footer {
+	margin: auto;
+	clear: both;
+	width: 100%;
+	padding: 20px 0;
+	background-color: #cce6ff;
+	text-align: center;
+	color: #2b2b3b;
+	clear: both;
+}
+
+footer div {
+	font-size: 14px;
+}
+</style>
+</head>
+<body>
+
+<!--메인 사진작업 -->
+	<center>
+	<div>
+		<a href="mac.html">
+			<img alt="mac" src="mac.png" width="190px" height="45px;" align="top"  style=" margin-top: 15px; margin-bottom: 22px; ">
+		</a>
+	</div>
+	</center>
+<header>
+<!-- 메뉴 -->
+<div id="menudiv1">
+	<div class="menudiv2">
+		<ul class="menu">
+			<li><a href="#">회사소개</a>
+				<ul class="submenu">
+					<li><a href="#">CEO인사말</a></li>
+					<li><a href="#">회사소개</a></li>
+					<li><a href="#">회사연혁</a></li>
+					<li><a href="#">오시는길</a></li>
+				</ul>
+			</li>
+		
+			<li><a href="#">채용정보</a>
+				<ul class="submenu">
+					<li><a href="#">사무직채용</a></li>
+					<li><a href="#">생산직채용</a></li>
+				</ul>
+			</li>
+			
+			<li><a href="#">사원관리</a>
+				<ul class="submenu">
+					<li><a href="#">사원목록</a></li>
+					<li><a href="#">사원등록</a></li>
+					<li><a href="#">급여계산</a></li>
+				</ul>
+			</li>
+			
+			<li><a href="#">공지사항</a>
+				<ul class="submenu">
+					<li><a href="#">보도자료</a></li>
+					<li><a href="#">공지사항</a></li>
+					<li><a href="#">문의하기</a></li>
+					<li><a href="#">협력사공지</a></li>
+					<li><a href="#">근무일정표</a></li>
+					<li><a href="#">근무시간표</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>	
+</header>
+
+
+
+<!-- 본문 -->
+<div id="image">
+<p id="p0"> AOI</p>
+
+	<p id="p1"> Automatic Optical Inspection <br><br>
+	CREATING VALUE THROUGH TECHNOLOGIES</p> <br>
+	<p id="p2"><a href="#">더보기 +</a></p>
+
+</div>
+
+
+<!-- 편하게보기 -->
+<div >
+
+<div>
+	<ul class="easy">
+	<li><a href="#"><img alt="" src="근무시간표.png" width="30px" height="30px"></a>
+		<li>근무시간표</li></li><br>
+		<li>근무일정표</li><br>
+		<li>오시는 길</li><br>
+		<li>채용정보</li><br>
+	</ul>
+</div>
+
+
+
+
+
+</div>
+
+
+
+<!-- 맨 밑글 -->
+
+<footer>
+	<div id="footertext">
+		<address>
+		<p><strong>대표</strong> : 문주환</p>
+		<p><strong>Tel</strong> : 010-3154-5660</p>
+		<p><strong>Fax</strong> : 070-8668-1238</p>
+		<p><a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a></p>
+		<p><strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호</p>
+		</address>	
+	</div>
+</footer>
+	<div style="background-color:  #66b5ff; text-align: center; font-size: 13px;">
+		<p>Copyright &copy; All rights reserved.</p>
+	</div>
+	
+
+</body>
+</html>

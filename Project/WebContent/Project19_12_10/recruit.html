@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>(주) 맥</title>
+<style type="text/css">
+body{
+	margin: auto;
+	display: block;
+	padding: 0;
+	width: 95%;
+}
+
+/* Logo */
+#logo{ 
+	margin: 1% auto 2% auto;
+padding-top: 20px; 
+padding-bottom: 8px; }
+
+/* menu */
+#mainmenu{
+	height: 33px;
+	padding: 0 18%;
+	margin: auto;
+	background-color: #cce6ff;
+ 	
+	
+}
+
+#mainmenu .menu{
+	list-style-type: none;
+	font-size: 20px;
+	display : flex;
+	
+	
+}
+
+.menu>li{
+	line-height: 20px;
+	width: 100%;
+	height: 31px;
+	background:  #cce6ff;
+	
+}
+
+.menu>li>a{
+	text-align : center;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	padding: 6px;
+	letter-spacing: 0.25em;
+	color: black;
+}
+.menu>li>a:hover{
+	background-color:  #339cff;
+	color: white;
+}
+.menu>li:hover .submenu{
+	opacity: 1;
+	visibility: visible;
+	
+}
+
+.submenu{
+	list-style-type: none;
+	font-size: 17px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	display: flex;
+	
+	
+}
+
+.submenu>li{
+	padding: 0 1%;
+	line-height: 40px;
+	width: 110px;
+	background:  #cce6ff;
+	
+	
+	}
+
+.submenu>li>a{
+	text-decoration: none;
+	display: block;
+	padding-left :0;
+	font-weight: bold;
+	color: black;
+	
+	
+}
+
+.submenu>li>a:hover {
+	color: #339cff;
+	text-decoration: underline;
+}
+
+
+/* slide */
+#slide{
+	background-image: url("images/채용1.jpg");
+	color: white;
+	width:100%;
+	display: block;
+	height: 450px;
+	background-size: cover; 
+	
+	
+}
+
+#slide .aoi{
+	text-align: center;
+	font-size: 70px;
+	font-weight: bold;
+	height: 35px;
+	margin: 80px 0 75px 0;
+}
+#slide .p1{
+	text-align: center;
+	font-weight: bold;
+	font-size:30px;
+	padding: 10px;
+	height: 145px;
+}
+
+/* sidebar */
+
+#mySidenav a {
+  position: absolute; 
+  right: -140px; 
+  transition: 0.3s; /* Add transition on hover */
+  padding: 15px; /* 15pxpadding */
+  width: 150px; /* Set a specific width */
+  text-decoration: none; /* Remove underline */
+  font-size: 20px; /* Increase font size */
+  color: white; /* White text color */
+  border-radius: 0 5px 5px 0; /*Rounded corners on the top right and bottom right side */
+  text-align: right;
+  margin-top: 8%;
+}
+
+#mySidenav a:hover {
+  right: 0;
+}
+
+#home {
+  top: 20px;
+  background-color: #9999ff;
+}
+
+#about{
+  top: 80px;
+  background-color: #9999ff; 
+}
+
+#map {
+  top: 140px;
+ background-color: #9999ff; /* Red */
+}
+
+#recruit{
+ top: 200px;
+ background-color: #9999ff;
+}
+
+
+/* 채용정보 */
+#recruits{
+	font-size: 2em;
+	text-align: center;
+	margin-top: 120px;
+	
+	
+}
+
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  width: 80%;
+  margin: auto;
+}
+
+.tab button {
+  float: left;
+  background-color :#cce6ff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 20px;
+  width: 50%;
+  font-weight: bold;
+  
+}
+
+.tab button:hover {
+  background-color: #339cff;
+}
+
+.tab button.active {
+  background-color: #ccc;
+}
+
+.tabcontent {
+  display: none;
+  text-align: center;
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+
+@-webkit-keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.tabspan:hover{
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.tabtext1{
+	font-size: 1.8em;
+}
+
+.tabtext2{
+	display: flex;
+}
+
+.tabtextleft{
+  	border-bottom: 2px solid green; 
+  	width: 20%; 
+  	height: 65px; 
+  	margin-left: 10%;
+}
+
+.tabtextstep{
+  	display: flex; 
+  	margin-left: 44%; 
+  	width: 100%; 
+  	font-size: 1.3em; 
+  	padding: 18px; 
+  	margin-top: 5%; 
+  	border-bottom: 1px solid lightgreen;
+ }	
+ 
+ .tabtextstep2{
+  	display: flex; 
+  	margin-left: 33%; 
+  	width: 96%; 
+  	font-size: 1.3em; 
+  	padding: 18px; 
+  	margin-top: 5%; 
+  	border-bottom: 1px solid lightgreen;
+  	
+ }	
+ 
+ /* footer */
+#footer{
+	display: inline-block;
+	width: 100%;
+	clear: both;
+	background-color: white;
+	
+	
+}
+#footer .footertext{
+	font-size :15px;
+	padding: auto;
+	float: right;
+	width: 47%;
+	display: inline;
+}
+
+#footer .footerimage{
+	float: left;
+	width: 45%;
+	display: inline;
+}
+#footer .footerimage>a{
+	float: right;
+	margin-top: 59px;
+	
+}
+
+#copyright{
+	text-align: center;
+	font-size: 14px;
+	background-color:  #005cb3;
+	margin-top: auto ;
+	border: 1px solid;
+	color: white;
+}
+ 
+ 
+
+</style>
+<script type="text/javascript">
+function employ(evt, employname) {
+
+	var i, tabcontent, tablinks;
+
+	  tabcontent = document.getElementsByClassName("tabcontent");
+	  for (i = 0; i < tabcontent.length; i++) {
+	     tabcontent[i].style.display = "none";
+	  }
+
+	   tablinks = document.getElementsByClassName("tablinks");
+	  for (i = 0; i < tablinks.length; i++) {
+	    tablinks[i].className = tablinks[i].className.replace("active", "");
+	   }
+
+	   document.getElementById(employname).style.display = "block";
+	  evt.currentTarget.className += "active";
+	} 
+	
+document.getElementById("defaultOpen").click();
+
+
+
+</script>
+</head>
+<body>
+<!-- sidebar -->
+<div id="mySidenav" class="sidenav">
+  <a href="mac.html" id="home">home</a>
+  <a href="introduce.html" id="about">about</a>
+  <a href="map.html" id="map">오시는길</a>
+  <a href="recruit.html" id="recruit">채용정보</a>
+</div> 
+<!-- Logo -->
+<div id="logo">
+	<center>
+		<a href="mac.html"><img alt="맥 로고" src="mac.png"></a>
+	</center>
+</div>
+
+<!-- Menu -->
+<div id="mainmenu">
+
+		<ul class="menu">
+			<li class="introdue"><a href="#">회사소개</a>
+				<ul class="submenu">
+					<li class="introdue"><a href="ceo.html">CEO인사말</a>
+					<li class="introdue"><a href="introduce.html">회사소개</a>
+					<li class="introdue"><a href="timeline.html">회사연혁</a>
+					<li class="introdue"><a href="map.html">오시는길</a>
+				</ul>
+			</li>
+			
+			<li class="employment"><a href="recruit.html">채용정보</a>
+			</li>
+			
+			<li class="management"><a href="#">사원관리</a>
+				<ul class="submenu">
+					<li class="management"><a href="#">사원목록</a></li>
+					<li class="management"><a href="#">사원등록</a></li>
+					<li class="management"><a href="salary.html">급여계산</a></li>
+				</ul>
+			</li>
+
+			<li class="notice"><a href="#">공지사항</a>
+				<ul class="submenu">
+					<li class="notice"><a href="news.html">보도자료</a>
+					<li class="notice"><a href="noticeboard.html">공지사항</a>
+					<li class="notice"><a href="QandA.html">문의사항</a>
+				</ul><br><br>
+				<ul class="submenu">
+					<li class="notice"><a href="coop.html">협력사공지</a>
+					<li class="notice"><a href="timetable.html">근무일정표</a>
+					<li class="notice"><a href="timer.html">근무시간표</a>
+				</ul>
+			</li>
+		</ul>
+</div>
+
+<!-- 슬라이드 사진 -->
+<div id="slide">
+	<div>
+		<br><p class="aoi">-채용정보-</p><br>
+	</div>
+	<div class="p1">	
+		<p> <strong style="font-size: 1.7em; color: #bfff00; ">사무직 / 생산직 채용</strong></p>
+	</div>
+</div>
+
+<!-- 채용정보 -->
+<div id="recruits">
+<h1>채용공고</h1>
+<p>열정과 전문지식을 마음껏 펼칠 수 있는 곳, 바로 (주) 맥입니다</p>
+</div>
+<hr style="width: 80%;"><br>
+
+
+
+<!--tab추가  -->
+<div class="tab">
+  <button class="tablinks" onclick="employ(event, 'employ1')" id="defaultOpen"  >생산직 채용</button>
+  <button class="tablinks" onclick="employ(event, 'employ2')" id="defaultOpen">사무직 채용</button>
+</div>
+
+<!-- Tab content -->
+<div id="employ1" class="tabcontent">
+  <div class="tabtext1">
+  <h1>생산직 채용</h1>
+  <h3>(주) 맥과 함께 성장할 인재를 모집합니다.</h3>
+  </div>
+  <hr style="width: 80%; opacity: 0.7;">
+  <br><br>
+  
+  <div class="tabtext2">
+  		<div class="tabtextleft" >
+  		<h2>채용 시기</h2>
+  		</div>
+  		<div style="width: 55%; margin-left: 5%; font-size: 1.3em;" >
+  		<h3>맥 경영 상황에 따라 수시로 채용공고를 진행합니다.<br>사무직 또는 생산직 직원 모두 응시 가능합니다.</h3>
+  		</div>
+  </div>
+  <br><br><br>
+  
+  
+  <div class="tabtext2">
+  		<div  class="tabtextleft" >
+  		<h2>채용 절차</h2>
+  		</div>
+  		
+  		<div>
+  			<div><img src="images/채용.jpg" width="630px" style="margin-left: 44%;"></div><br>
+  			
+  			<div class="tabtextstep" >
+  				<div>
+  					<img  src="images/step1.png" width="58px" height="20px"><br>
+  					<span style="font-weight: bold;">서류전형</span>
+  				</div>
+  				<div>
+  				<span style="margin-left: 50px;">인재상 및 조직적합성에 부합하는 지원자 선발</span>
+  				</div>
+  			</div>
+  			
+  			
+  			<div class="tabtextstep" >
+  				<div>
+  					<img  src="images/step2.png" width="58px" height="20px"><br>
+  					<span style="font-weight: bold;">면접전형</span>
+  				</div>
+  				<div>
+  					<ul style="text-align: left; margin-left: 50px;">
+  						<li>실무진 면접 과 부서장 면접으로 구성</li>
+  						<li>多 대 多 면접으로 진행</li>
+  						<li>우수역량 보유자 및 직무관련 경력자 우대</li>
+  					</ul>
+  				</div>
+  			</div>
+  			
+  			<div class="tabtextstep" >
+  				<div>
+  					<img  src="images/step3.png" width="58px" height="20px"><br>
+  					<span style="font-weight: bold;">최종합격</span>
+  				</div>
+  				<div>
+  				<span style="margin-left: 50px;">채용홈페이지 및 개별 연락을 통한 합격자 발표</span>
+  				</div>
+  			</div>
+  		</div>
+  </div><br><br><br>
+  
+
+  
+    <div class="tabtext2">
+  		<div class="tabtextleft" >
+  		<h2>유의사항</h2>
+  		</div>
+  		<div style="width: 55%; margin-left: 14%; font-size: 1.3em;" >
+  			<ul style="text-align: left; font-weight: bold; width: 100%;">
+  				<li>보훈대상자의 경우 관련법에 의거 우대합니다</li>
+  				<li>일정 및 전형 내용은 전형상황에 따라 변동될 수 있습니다.</li>
+  				<li>작성된 내용이 사실과 다를 경우 합격이 취소될 수 있습니다.</li>
+  			</ul>
+  		</div>
+  </div>
+  <br><br><br>
+  <hr style="width: 80%; margin-top: 50px;">
+  
+ <span onclick="this.parentElement.style.display='none'" style="cursor: pointer; text-align: left; font-size: 1.5em; clear: both;" class="tabspan">닫기</span> 
+<hr style="width: 80%;  margin-bottom:  50px;">
+</div>
+
+<div id="employ2" class="tabcontent">
+	<div class="tabtext1">
+  <h1>사무직 채용</h1>
+  <h3>(주) 맥과 함께 성장할 인재를 모집합니다.</h3>
+   </div>
+   <hr style="width: 80%; opacity: 0.7">
+   <br><br>
+   
+   <div class="tabtext2">
+  		<div  class="tabtextleft">
+  		<h2>채용 시기</h2>
+  		</div>
+  		<div style="width: 55%; margin-left: 5%; font-size: 1.3em;" >
+  		<h3>맥 경영 상황에 따라 수시로 채용공고를 진행합니다.<br>사무직 또는 생산직 직원 모두 응시 가능합니다.</h3>
+  		</div>
+  </div> 
+   <br><br><br>
+  
+  
+  <div class="tabtext2">
+  		<div  class="tabtextleft"  >
+  		<h2>채용 절차</h2>
+  		</div>
+  		
+  		<div>
+  			<div><img src="images/채용.jpg" width="630px" style="margin-left: 33%;"></div><br>
+  			
+  			<div class="tabtextstep2" >
+  				<div>
+  					<img  src="images/step1.png" width="58px" height="20px"><br>
+  					<span style="font-weight: bold;">서류전형</span>
+  				</div>
+  				<div>
+  				<span style="margin-left: 50px;">인재상 및 조직적합성에 부합하는 지원자 선발</span>
+  				</div>
+  			</div>
+  			
+  			
+  			<div class="tabtextstep2" >
+  				<div>
+  					<img  src="images/step2.png" width="58px" height="20px"><br>
+  					<span style="font-weight: bold;">면접전형</span>
+  				</div>
+  				<div>
+  					<ul style="text-align: left; margin-left: 50px;">
+  						<li>실무진 면접과 임원면접, CEO 면접으로 구성</li>
+  						<li>신입의 경우 多 대 多 면접, 경력의 경우 1 대 多 면접이 기본형태 </li>
+  						<li>우수한 역량 보유한 자, 업무관련 지식 및 수행능력이 있는 자를 선발</li>
+  					</ul>
+  				</div>
+  			</div>
+  			
+  			<div class="tabtextstep2" >
+  				<div>
+  					<img  src="images/step3.png" width="58px" height="20px"><br>
+  					<span style="font-weight: bold;">최종합격</span>
+  				</div>
+  				<div>
+  				<span style="margin-left: 50px;">채용홈페이지 및 개별 연락을 통한 합격자 발표</span>
+  				</div>
+  			</div>
+  		</div>
+  </div><br><br><br>
+  
+
+  
+    <div class="tabtext2">
+  		<div class="tabtextleft" >
+  		<h2>유의사항</h2>
+  		</div>
+  		<div style="width: 55%; margin-left: 14%; font-size: 1.3em;" >
+  			<ul style="text-align: left; font-weight: bold; width: 100%;">
+  				<li>작성된 내용이 사실과 다를 경우 합격이 취소될 수 있습니다.</li>
+  				<li>보훈대상자의 경우 관련법에 의거 우대합니다</li>
+  				<li>일정 및 전형 내용은 전형상황에 따라 변동될 수 있습니다.</li>
+  			</ul>
+  		</div>
+  </div>
+  <br><br><br>
+  <hr style="width: 80%; margin-top: 50px;">
+  
+    <span onclick="this.parentElement.style.display='none'" style="cursor: pointer;  font-size: 1.5em;"class="tabspan">닫기</span> 
+<hr style="width: 80%; margin-bottom:  50px;">
+</div>
+
+<!-- footer -->
+<div id="footer">
+	<div class="footerimage">
+		<a href="mac.html">
+			<img alt="logo" src="mac.png">
+		</a>
+	</div>
+	<div class="footertext">
+		<p><strong>대표</strong> : 문주환</p>
+		<p><strong>Tel</strong> : 010-3154-5660</p>
+		<p><strong>Fax</strong> : 070-8668-1238</p>
+		<p><strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a></p>
+		<p><strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호</p>
+	</div>
+</div>
+
+
+<!-- copyright -->
+<div id="copyright">
+	<p>Copyright &copy; All rights reserved.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>(주) 맥</title>
+<style type="text/css">
+*{
+	box-sizing: border-box;
+}
+body{
+	margin: auto;
+	display: block;
+	padding: 0;
+	width: 95%;
+}
+
+/* Logo */
+#logo{ 	
+margin: 1% auto 2% auto;
+ padding-top: 20px; 
+ padding-bottom: 8px; }
+
+/* menu */
+#mainmenu{
+	height: 33px;
+	padding: 0 18%;
+	margin: auto;
+	background-color: #cce6ff;
+ 	
+	
+}
+
+#mainmenu .menu{
+	list-style-type: none;
+	font-size: 20px;
+	display : flex;
+	
+	
+}
+
+.menu>li{
+	line-height: 20px;
+	width: 100%;
+	height: 31px;
+	background:  #cce6ff;
+	
+}
+
+.menu>li>a{
+	text-align : center;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	padding: 6px;
+	letter-spacing: 0.25em;
+	color: black;
+}
+.menu>li>a:hover{
+	background-color:  #339cff;
+	color: white;
+}
+.menu>li:hover .submenu{
+	opacity: 1;
+	visibility: visible;
+	
+}
+
+.submenu{
+	list-style-type: none;
+	font-size: 17px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	display: flex;
+	
+	
+}
+
+.submenu>li{
+	padding: 0 1%;
+	line-height: 40px;
+	width: 110px;
+	background:  #cce6ff;
+	
+	
+	}
+
+.submenu>li>a{
+	text-decoration: none;
+	display: block;
+	padding-left :0;
+	font-weight: bold;
+	color: black;
+	
+	
+}
+
+.submenu>li>a:hover {
+	color: #339cff;
+	text-decoration: underline;
+}
+
+
+/* slide */
+#slide{
+	background-image: url("images/slideimage1.jpg");
+	background-size: cover;
+	color: white;
+	height: 450px;
+	display: block;
+}
+
+#slide .aoi{
+	text-align: center;
+	font-size: 70px;
+	font-weight: bold;
+	height: 35px;
+	margin: 80px 0 75px 0;
+}
+#slide .p1{
+	text-align: center;
+	font-weight: bold;
+	font-size:30px;
+	padding: 10px;
+	height: 145px;
+}
+
+/* 지도 */
+#mapping{
+	margin: auto;
+	
+}
+.maptext{
+	font-size: 1.5em;
+	border-top :1px lightgray;
+	margin: auto;
+	border-bottom: 1px solid lightgray;
+	border-top : 1px solid lightgray;
+	width: 70%;
+		
+}
+
+/* footer */
+#footer{
+	display: inline-block;
+	width: 100%;
+	clear: both;
+	
+}
+#footer .footertext{
+	font-size :15px;
+	padding: auto;
+	float: right;
+	width: 47%;
+	display: inline;
+}
+
+#footer .footerimage{
+	float: left;
+	width: 45%;
+	display: inline;
+}
+#footer .footerimage>a{
+	float: right;
+	margin-top: 59px;
+	
+}
+
+#copyright{
+	text-align: center;
+	font-size: 14px;
+	background-color:  #005cb3;
+	margin-top: auto ;
+	border: 1px solid;
+	color: white;
+}
+
+#mySidenav a {
+  position: absolute; 
+  right: -110px; 
+  transition: 0.3s; 
+  padding: 15px; /* 15pxpadding */
+  width: 150px; /* Set a specific width */
+  text-decoration: none; /* Remove underline */
+ font-size: 20px; /* Increase font size */
+  color: white; /* White text color */
+  border-radius: 0 5px 5px 0; /*Rounded corners on the top right and bottom right side */
+  text-align: right;
+  margin-top: 8%;
+}
+
+#mySidenav a:hover {
+  right: 0;
+}
+
+#home {
+  top: 20px;
+  background-color: #9999ff;
+}
+
+#about{
+  top: 80px;
+  background-color: #9999ff; /* Blue */
+}
+
+#map {
+  top: 140px;
+ background-color: #9999ff; /* Red */
+}
+
+#recruit{
+	top: 200px;
+	background-color: #9999ff;
+}
+
+
+
+</style>
+</head>
+<body>
+<!-- sidebar -->
+<div id="mySidenav" class="sidenav">
+  <a href="mac.html" id="home">home</a>
+  <a href="introduce.html" id="about">about</a>
+  <a href="map.html" id="map">오시는길</a>
+  <a href="recruit.html" id="recruit">채용정보</a>
+</div> 
+<!-- Logo -->
+<div id="logo">
+	<center>
+		<a href="mac.html"><img alt="맥 로고" src="mac.png"></a>
+	</center>
+</div>
+
+<!-- Menu -->
+<div id="mainmenu">
+
+		<ul class="menu">
+			<li class="introdue"><a href="#">회사소개</a>
+				<ul class="submenu">
+					<li class="introdue"><a href="ceo.html">CEO인사말</a>
+					<li class="introdue"><a href="introduce.html">회사소개</a>
+					<li class="introdue"><a href="timeline.html">회사연혁</a>
+					<li class="introdue"><a href="map.html">오시는길</a>
+				</ul>
+			</li>
+			
+			<li class="employment"><a href="recruit.html">채용정보</a>
+			</li>
+			
+			<li class="management"><a href="#">사원관리</a>
+				<ul class="submenu">
+					<li class="management"><a href="#">사원목록</a></li>
+					<li class="management"><a href="#">사원등록</a></li>
+					<li class="management"><a href="salary.html">급여계산</a></li>
+				</ul>
+			</li>
+
+			<li class="notice"><a href="#">공지사항</a>
+				<ul class="submenu">
+					<li class="notice"><a href="news.html">보도자료</a>
+					<li class="notice"><a href="noticeboard.html">공지사항</a>
+					<li class="notice"><a href="QandA.html">문의사항</a>
+				</ul><br><br>
+				<ul class="submenu">
+					<li class="notice"><a href="coop.html">협력사공지</a>
+					<li class="notice"><a href="timetable.html">근무일정표</a>
+					<li class="notice"><a href="timer.html">근무시간표</a>
+				</ul>
+			</li>
+		</ul>
+</div>
+
+<!-- 슬라이드 사진 -->
+<div id="slide">
+	<div>
+		<br><p class="aoi">-회사소개-</p><br>
+	</div>
+	<div class="p1">	
+		<p> CEO인사말&nbsp&nbsp회사소개&nbsp&nbsp회사연혁
+		&nbsp&nbsp<strong style="font-size: 1.7em; color: #bfff00; ">오시는길</strong><br>
+	</div>
+</div>
+
+<div id="mapping">
+
+<div class="mapiframe" align="center" style="margin: auto; width: 100%;">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.9870030516513!2d126.
+78272701480365!3d37.31913554601652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b6e26fc
+16ae81%3A0x5182ebaf6ad90d0c!2z6rK96riw64-EIOyViOyCsOyLnCDri6jsm5Dqtawg7JuQ7Iuc64-ZIDgxOC01!
+5e0!3m2!1sko!2skr!4v1576299343227!5m2!1sko!2skr"
+ width="1500" height="700" frameborder="0" style="margin:3% 0;" allowfullscreen=" "></iframe>
+</div>
+
+<div class="maptext">
+<h1>주식회사 맥</h1>
+<h3>경기도 안산시 단원구 원시동 818-5 202호</h3>
+<h4 style="border: 1ps solid;"><img alt="전화" src="images/tel.png" style="width: 30px; height: 30px;">010-3154-5660</h4>
+<h4><img alt="팩스" src="images/fax.png" style="width: 30px; height: 30px;">070-8668-1238</h4>
+
+</div>
+</div>
+
+
+<!-- footer -->
+<div id="footer">
+	<div class="footerimage">
+		<a href="mac.html">
+			<img alt="logo" src="mac.png">
+		</a>
+	</div>
+	<div class="footertext">
+		<p><strong>대표</strong> : 문주환</p>
+		<p><strong>Tel</strong> : 010-3154-5660</p>
+		<p><strong>Fax</strong> : 070-8668-1238</p>
+		<p><strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a></p>
+		<p><strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호</p>
+	</div>
+</div>
+
+
+<!-- copyright -->
+<div id="copyright">
+	<p>Copyright &copy; All rights reserved.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="device-width, initial-scale=1">
+<title>(주) 맥</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+<style type="text/css">
+*{
+	box-sizing: border-box;
+}
+body{
+	margin: auto;
+	display: block;
+	padding: 0;
+	width: 95%;
+}
+
+/* Logo */
+#logo{ 
+	margin: 1% auto 2% auto;
+padding-top: 20px; padding-bottom: 8px; }
+
+
+/* menu */
+#mainmenu{
+	height: 33px;
+	padding: 0 18%;
+	margin: auto;
+	background-color: #cce6ff;
+ 	
+	
+}
+
+#mainmenu .menu{
+	list-style-type: none;
+	font-size: 20px;
+	display : flex;
+	
+	
+}
+
+.menu>li{
+	line-height: 20px;
+	width: 100%;
+	height: 31px;
+	background:  #cce6ff;
+	
+}
+
+.menu>li>a{
+	text-align : center;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	padding: 6px;
+	letter-spacing: 0.25em;
+	color: black;
+}
+.menu>li>a:hover{
+	background-color:  #339cff;
+	color: white;
+}
+.menu>li:hover .submenu{
+	opacity: 1;
+	visibility: visible;
+	
+}
+
+.submenu{
+	list-style-type: none;
+	font-size: 17px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	display: flex;
+	
+	
+}
+
+.submenu>li{
+	padding: 0 1%;
+	line-height: 40px;
+	width: 110px;
+	background:  #cce6ff;
+	
+	
+	}
+
+.submenu>li>a{
+	text-decoration: none;
+	display: block;
+	padding-left :0;
+	font-weight: bold;
+	color: black;
+	
+	
+}
+
+.submenu>li>a:hover {
+	color: #339cff;
+	text-decoration: underline;
+}
+
+/* notice */
+#notice-icon{
+	background:  #cce6ff;
+	width: 100%
+}
+
+#noticeboxid{
+	width: 49.8%;
+	height: 210px;
+	padding-top: 1px;
+	float: left;
+	background:  #cce6ff;
+		
+}
+
+.noticeboxclass{
+	width: 80.5%;
+	height:75%;
+	margin-left: 15.3%;
+	background:  #cce6ff;
+	border-right: 1px solid;
+	padding-bottom: 10px;
+	
+}
+
+#noticeboxid .noticeboxclass>h3{
+	color: #000;
+	font-size: 29px;
+	margin: 12px 0;
+	padding: 0 0 0 18px;
+	display: inline;
+	float: left;
+	
+	
+}
+#noticeboxid .noticeboxclass>h4>a{
+	text-align: left;
+	float: right;
+	margin-right: 45px;
+	margin-top: 30px;
+	text-decoration: none;
+	color: black;
+	
+}
+
+#noticeboxid .noticeboxclass>h4 :hover{
+	text-decoration: underline;
+}
+
+
+
+
+/* icon */
+#icon{
+	float: right;
+	width: 50.2%;
+	height: 211px;
+	background:  #cce6ff;
+	
+	
+
+}
+
+/* 오시는 길 */
+
+
+#icon .map{
+	
+	float : left;
+	text-align: center;
+	width: 20%;
+	margin-top: 40px;	
+	
+}
+
+#icon .map>h5>a{
+	text-decoration: none;
+	color: black;
+}
+
+#icon .map:hover{
+	text-decoration: underline;
+	font-size: 1.25em;
+	font-weight: bold;
+	color: #339cff;
+	transform : scale(1.1);
+
+}
+#icon .map>h5>a:hover{
+	color: #339cff;
+}
+
+/* 타임테이블 */
+
+#icon .time{
+	float : left;
+	text-align: center;
+	width: 20%;
+	margin-top: 40px;	
+	
+}
+
+#icon .time>h5>a{
+	text-decoration: none;
+	color: black;
+}
+
+
+#icon .time:hover{
+	text-decoration: underline;
+	font-size: 1.25em;
+	font-weight: bold;
+	transform : scale(1.1);
+
+}
+
+#icon .time>h5>a:hover{
+	color: #339cff;
+}
+
+
+/* 근무일정표 */
+
+#icon .date{
+	float : left;
+	text-align: center;
+	width: 20%;
+	margin-top: 40px;	
+	
+}
+#icon .date>h5>a{
+	text-decoration: none;
+	color: black;
+}
+
+
+#icon .date:hover{
+	text-decoration: underline;
+	font-size: 1.25em;
+	font-weight: bold;
+	transform : scale(1.1);
+
+}
+
+#icon .date>h5>a:hover{
+	color: #339cff;
+}
+/* 근무일정표 */
+
+#icon .employ{
+	float : left;
+	text-align: center;
+	width: 20%;
+	margin-top: 40px;	
+	
+}
+
+#icon .employ>h5>a{
+	text-decoration: none;
+	color: black;
+}
+
+
+#icon .employ:hover{
+	text-decoration: underline;
+	font-size: 1.25em;
+	font-weight: bold;
+	transform : scale(1.1);
+}
+
+#icon .employ>h5>a:hover{
+	color: #339cff;
+}
+
+/* slide */
+#slide{
+	background-image: url("global.jpg");
+	background-size: cover;
+	color: #00004d;
+	height: 420px;
+}
+
+#slide .aoi{
+	text-align: center;
+	font-size: 75px;
+	font-weight: bold;
+	height: 25px;
+	margin: 40px 0 75px 0;
+}
+#slide .p1{
+	text-align: center;
+	font-weight: bold;
+	font-size:27px;
+	padding: 10px;
+	height: 145px;
+}
+
+#slide .p2{
+	text-align: center;
+	font-size: 26px;
+	border: 2px solid white;
+	font-weight: bold;
+	border-radius: 60px;
+	width: 150px;
+	margin: -5px auto;
+	
+	
+}
+#slide .p2>a{
+	text-decoration: blink;
+	color: #00004d;
+}
+
+#slide .p2:hover {
+	background-color: white;
+}
+
+
+/* footer */
+#footer{
+	display: inline-block;
+	width: 100%;
+	clear: both;
+	background-color: white;
+	
+	
+}
+#footer .footertext{
+	font-size :15px;
+	padding: auto;
+	float: right;
+	width: 47%;
+	display: inline;
+}
+
+#footer .footerimage{
+	float: left;
+	width: 45%;
+	display: inline;
+}
+#footer .footerimage>a{
+	float: right;
+	margin-top: 59px;
+	
+}
+
+#copyright{
+	text-align: center;
+	font-size: 14px;
+	background-color:  #005cb3;
+	margin-top: auto ;
+	border: 1px solid;
+	color: white;
+}
+
+#mySidenav a {
+  position: absolute; 
+  right: -110px; 
+  transition: 0.3s;
+  padding: 15px; 
+  width: 150px;
+  text-decoration: none; 
+ font-size: 20px; 
+  color: white; 
+  border-radius: 0 5px 5px 0; 
+  text-align: right;
+  margin-top: 8%;
+}
+
+#mySidenav a:hover {
+  right: 0;
+}
+
+#home {
+  top: 20px;
+  background-color: #9999ff;
+}
+
+#about{
+  top: 80px;
+  background-color: #9999ff; /* Blue */
+}
+
+#map {
+  top: 140px;
+ background-color: #9999ff; 
+}
+#recruit{
+	top: 200px;
+	background-color: #9999ff;
+}
+
+
+</style>
+</head>
+<body>
+<!-- sidebar -->
+<div id="mySidenav" class="sidenav">
+  <a href="mac.html" id="home">home</a>
+  <a href="introduce.html" id="about">about</a>
+  <a href="map.html" id="map">오시는길</a>
+  <a href="recruit.html" id="recruit">채용정보</a>
+</div> 
+
+</div>
+<!-- Logo -->
+<div id="logo">
+	<center>
+		<a href="mac.html"><img alt="맥 로고" src="mac.png"></a>
+	</center>
+</div>
+
+<div><h3><marquee scrollamount="9">(주) 맥에 오신것을 환영합니다.</marquee></h3></div>
+<!-- Menu -->
+<div id="mainmenu">
+
+		<ul class="menu">
+			<li class="introdue"><a href="#">회사소개</a>
+				<ul class="submenu">
+					<li class="introdue"><a href="ceo.html">CEO인사말</a>
+					<li class="introdue"><a href="introduce.html">회사소개</a>
+					<li class="introdue"><a href="timeline.html">회사연혁</a>
+					<li class="introdue"><a href="map.html">오시는길</a>
+				</ul>
+			</li>
+			
+			<li class="employment"><a href="recruit.html">채용정보</a>
+			</li>
+			
+			<li class="management"><a href="#">사원관리</a>
+				<ul class="submenu">
+					<li class="management"><a href="#">사원목록</a></li>
+					<li class="management"><a href="#">사원등록</a></li>
+					<li class="management"><a href="salary.html">급여계산</a></li>
+				</ul>
+			</li>
+
+			<li class="notice"><a href="#">공지사항</a>
+				<ul class="submenu">
+					<li class="notice"><a href="news.html">보도자료</a>
+					<li class="notice"><a href="noticeboard.html">공지사항</a>
+					<li class="notice"><a href="QandA.html">문의사항</a>
+				</ul><br><br>
+				<ul class="submenu">
+					<li class="notice"><a href="coop.html">협력사공지</a>
+					<li class="notice"><a href="timetable.html">근무일정표</a>
+					<li class="notice"><a href="timer.html">근무시간표</a>
+				</ul>
+			</li>
+		</ul>
+</div>
+
+<!-- slide -->
+<div id="slide">
+	<div>
+		<br><p class="aoi">AOI</p>
+	</div>
+	<div class="p1">	
+		<p> Automatic Optical Inspection <br><p>
+		CREATING VALUE THROUGH TECHNOLOGIES</p> <br>
+	</div>
+	<div class="p2">	
+		<a href="introduce.html">더보기 +</a>
+	</div>
+</div>
+
+
+<!-- icon -->
+<div id="notice-icon">
+	<div id="noticeboxid">
+		<div class="noticeboxclass">
+			<h3>공지사항</h3>
+			<h4><a href="noticeboard.html">더보기</a></h4>
+			<table class="noticeboxul table">
+				<thead>
+					<tr>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr>
+						<td><a href="#">크리스마스 근무 일정</a></td>
+						<td>문주환</td>
+						<td>2019.12.24</td>
+					</tr>
+					
+					<tr>
+						<td><a href="#">휴가 안내합니다.</a></td>
+						<td>문주환</td>
+						<td>2019.03.17</td>
+					</tr>
+				
+					<tr>
+						<td><a href="#">제품별 검사기준표</a></td>
+						<td>문주환</td>
+						<td>2018.04.05</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- 	<ul class="noticeboxul"  >
+					<li><a href="#">크리스마스 근무 일정</a></li>
+					<li><a href="#">휴가 안내합니다.</a></li>
+					<li><a href="#">제품별 검사기준표</a></li>
+				</ul> -->
+		</div>
+	</div>
+		
+		<div id="icon">
+			<div class="map">
+				<a href="map.html"><img alt="오시는 길" src="지도1.png" style="width: 75px; height: 75px; "
+				 onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'"></a><br>
+				<h5><a href="map.html">오시는 길</a></h5>
+			</div>
+		
+			<div class="time">
+				<a href="timer.html"><img alt="타임테이블" src="근무시간표1.png" style="width: 75px; height: 75px;" onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'"></a><br>
+				<h5><a href="timer.html">근무시간표</a></h5>
+			</div>
+			
+			<div class="date">
+				<a href="timetable.html"><img alt="근무일정표" src="근무일정표1.png" style="width: 75px; height: 75px;" onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'"></a><br>
+				<h5><a href="timetable.html">근무일정표</a></h5>
+			</div>
+			
+			<div class="employ">
+				<a href="recruit.html"><img alt="채용정보" src="채용정보1.png" style="width: 75px; height: 75px;" onmouseover="this.style.opacity='0.5'" onmouseout="this.style.opacity='1'"></a><br>
+				<h5><a href="#">채용정보</a></h5>
+			</div>
+			
+			
+		</div>
+
+</div>
+	
+
+<!-- footer -->
+<div id="footer">
+	<div class="footerimage">
+		<a href="mac.html">
+			<img alt="logo" src="mac.png">
+		</a>
+	</div>
+	<div class="footertext">
+		<p><strong>대표</strong> : 문주환</p>
+		<p><strong>Tel</strong> : 010-3154-5660</p>
+		<p><strong>Fax</strong> : 070-8668-1238</p>
+		<p><strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a></p>
+		<p><strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호</p>
+	</div>
+</div>
+
+
+<!-- copyright -->
+<div id="copyright">
+	<p>Copyright &copy; All rights reserved.</p>
+</div>
+<script src="https://ajax.googleapis.com/ajax/lib/jquery/1.12.4/jquery.min.js"></script>
+<script src="include/jquery-3.4.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

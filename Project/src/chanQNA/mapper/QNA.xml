@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chanqna">
+	<select id="listqna" resultType="chanQNA.QnaDTO">
+    select *from(select A.*, rownum as rn from (
+    	select num,writer,subject,reg_date,readcount
+		,filename,filesize,down,re_level
+		,(select count(*) from chanqna_comment
+		where board_num=num) comment_count, show
+		from qna_chan
+		order by ref desc, re_step
+    	)A
+    )
+    where rn between #{start} and #{end}
+  </select>
+  
+  <select id="count_qna" resultType="int">
+	  select count(*) from qna_chan
+	</select>
+	
+	
+	
+	 <insert id="insert_qna">
+    insert into qna_chan
+			(num,writer,subject,password,ref,re_step,re_level
+			,content,ip,filename,filesize)
+		values
+		( (select nvl(max(num)+1,1) from qna_chan)
+		 ,#{writer},#{subject},#{password}
+		 ,(select nvl(max(num)+1,1) from qna_chan)
+		 ,1,0,#{content},#{ip},#{filename},#{filesize} )
+  </insert>
+	
+	
+	 <update id="plusReadCount_qna">
+    update qna_chan set readcount=readcount+1 
+    where num=#{num}
+  </update>
+  
+    <select id="view_qna" resultType="chanQNA.QnaDTO">
+    select * from qna_chan
+    where num=#{num}
+  </select>
+  
+  <update id="updateStep_qna">
+	  update qna_chan
+		set re_step=re_step+1
+		where ref=#{ref} and re_step >= #{re_step}
+	</update>
+	
+	<insert id="reply_qna">
+	insert into qna_chan 
+	(num,writer,subject,password,ref,re_step,re_level,content,ip,filename,filesize)
+	 values( (select nvl(max(num)+1,1) from qna_chan)
+	 ,#{writer},#{subject},#{password}
+	 ,#{ref},#{re_step},#{re_level}
+	 ,#{content},#{ip},#{filename},#{filesize} )
+	</insert>
+	
+	 <select id="pass_check_qna" resultType="String">
+	  select password from qna_chan
+	  where num=#{num} and password=#{password}
+	</select>
+	
+	<insert id="commentAdd_qna">
+	  insert into chanqna_comment
+		(comment_num,board_num,writer,content) values
+		((select nvl(max(comment_num)+1,1) from chanqna_comment)
+		, #{board_num}, #{writer}, #{content})
+	</insert>
+	
+	<select id="commentList_qna" resultType="chanQNA.QnaDTO">
+		select * from chanqna_comment 
+		where board_num=#{num}
+	</select>	
+	
+	<select id="getFileName_qna" resultType="String">
+    select filename
+    from qna_chan
+    where num=#{num}
+  </select>
+  
+  	<update id="update_qna">
+	  update qna_chan set writer=#{writer}, subject=#{subject}, content=#{content}, filename=#{filename}, filesize=#{filesize}, down=#{down} where num=#{num}
+	</update>
+	
+	<delete id="delete_qna">
+	delete from qna_chan where num=#{num}
+	</delete>
+	
+		<update id="plusDown_qna">
+    update qna_chan set down=down+1 where num=#{num} 
+  </update>
+	
+</mapper>

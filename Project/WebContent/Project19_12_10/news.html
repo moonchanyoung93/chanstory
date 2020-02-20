@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="device-width, initial-scale=1">
+<title>(주) 맥</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+
+
+<style type="text/css">
+
+body {
+	display: block;
+	padding: 0;
+	width: 95%;
+	margin: auto;
+}
+
+/* Logo */
+#logo {
+	margin: 1% auto 2% auto;
+	padding-top: 20px;
+	padding-bottom: 8px;
+}
+
+/* menu */
+#mainmenu {
+	height: 33px;
+	padding: 0 18%;
+	margin: auto;
+	background-color: #cce6ff;
+}
+
+#mainmenu .menu {
+	list-style-type: none;
+	font-size: 20px;
+	display: flex;
+}
+
+.menu>li {
+	line-height: 20px;
+	width: 100%;
+	height: 31px;
+	background: #cce6ff;
+}
+
+.menu>li>a {
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	padding: 6px;
+	letter-spacing: 0.25em;
+	color: black;
+}
+
+.menu>li>a:hover {
+	background-color: #339cff;
+	color: white;
+}
+
+.menu>li:hover .submenu {
+	opacity: 1;
+	visibility: visible;
+}
+
+.submenu {
+	list-style-type: none;
+	font-size: 17px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	display: flex;
+}
+
+.submenu>li {
+	padding: 0 1%;
+	line-height: 40px;
+	width: 110px;
+	background: #cce6ff;
+}
+
+.submenu>li>a {
+	text-decoration: none;
+	display: block;
+	padding-left: 0;
+	font-weight: bold;
+	color: black;
+}
+
+.submenu>li>a:hover {
+	color: #339cff;
+	text-decoration: underline;
+}
+
+/* slide */
+#slide {
+	background-image: url("slide1.jpg");
+	background-size: cover;
+	color: white;
+	height: 450px;
+}
+
+#slide .aoi {
+	text-align: center;
+	font-size: 75px;
+	font-weight: bold;
+	height: 25px;
+	margin: 40px 0 75px 0;
+}
+
+#slide .p1 {
+	text-align: center;
+	font-weight: bold;
+	font-size: 27px;
+	padding: 10px;
+	height: 145px;
+}
+
+#noticetable{
+	width: 85%;
+	margin: 6% auto 0 auto;
+	color: black;
+	font-size: 1.1em;
+}
+
+.noticetablea{
+	color: black;
+}
+
+/* sidebar */
+#mySidenav a {
+  position: absolute; 
+  right: -110px; 
+  transition: 0.3s; /* Add transition on hover */
+  padding: 15px; /* 15pxpadding */
+  width: 150px; /* Set a specific width */
+  text-decoration: none; /* Remove underline */
+  font-size: 20px; /* Increase font size */
+  color: white; /* White text color */
+  border-radius: 0 5px 5px 0; /*Rounded corners on the top right and bottom right side */
+  text-align: right;
+  margin-top: 8%;
+}
+
+#mySidenav a:hover {
+  right: 0;
+}
+
+
+#home {
+  top: 20px;
+  background-color: #9999ff;
+}
+
+#about {
+  top: 80px;
+  background-color: #9999ff; 
+}
+
+#map {
+  top: 140px;
+ background-color: #9999ff; 
+}
+
+#recruit{
+ top: 200px;
+ background-color: #9999ff;
+}
+
+ /* footer */
+#footer{
+	display: inline-block;
+	width: 100%;
+	clear: both;
+	background-color: white;
+	color: black;
+	
+	
+}
+#footer .footertext{
+	font-size :15px;
+	padding: auto;
+	float: right;
+	width: 47%;
+	display: inline;
+}
+
+#footer .footerimage{
+	float: left;
+	width: 45%;
+	display: inline;
+}
+#footer .footerimage>a{
+	float: right;
+	margin-top: 59px;
+	
+}
+
+#copyright {
+	text-align: center;
+	font-size: 14px;
+	background-color:  #005cb3;
+	margin-top: auto ;
+	border: 1px solid;
+	color: white;
+}
+ 
+
+
+</style>
+
+</head>
+<body>
+<!-- sidebar -->
+<div id="mySidenav" class="sidenav">
+  <a href="mac.html" id="home">home</a>
+  <a href="introduce.html" id="about">about</a>
+  <a href="map.html" id="map">오시는길</a>
+  <a href="recruit.html" id="recruit">채용정보</a>
+</div> 
+
+<!-- Logo -->
+<div id="logo">
+	<center>
+		<a href="mac.html"><img alt="맥 로고" src="mac.png"></a>
+	</center>
+</div>
+
+<!-- Menu -->
+<div id="mainmenu">
+
+		<ul class="menu">
+			<li class="introdue"><a href="#">회사소개</a>
+				<ul class="submenu">
+					<li class="introdue"><a href="ceo.html">CEO인사말</a>
+					<li class="introdue"><a href="introduce.html">회사소개</a>
+					<li class="introdue"><a href="timeline.html">회사연혁</a>
+					<li class="introdue"><a href="map.html">오시는길</a>
+				</ul>
+			</li>
+			
+			<li class="employment"><a href="recruit.html">채용정보</a>
+			</li>
+			
+			<li class="management"><a href="#">사원관리</a>
+				<ul class="submenu">
+					<li class="management"><a href="#">사원목록</a></li>
+					<li class="management"><a href="#">사원등록</a></li>
+					<li class="management"><a href="salary.html">급여계산</a></li>
+				</ul>
+			</li>
+
+			<li class="notice"><a href="#">공지사항</a>
+				<ul class="submenu">
+					<li class="notice"><a href="news.html">보도자료</a>
+					<li class="notice"><a href="noticeboard.html">공지사항</a>
+					<li class="notice"><a href="QandA.html">문의사항</a>
+				</ul><br><br>
+				<ul class="submenu">
+					<li class="notice"><a href="coop.html">협력사공지</a>
+					<li class="notice"><a href="timetable.html">근무일정표</a>
+					<li class="notice"><a href="timer.html">근무시간표</a>
+				</ul>
+			</li>
+		</ul>
+</div>
+
+
+<div id="slide">
+	<div>
+		<br><p class="aoi">-공지사항-</p><br>
+	</div>
+	<div class="p1">	
+		<p> <strong style="font-size: 1.7em; color: yellow; ">보도자료</strong>&nbsp&nbsp공지사항&nbsp&nbsp문의사항<p>&nbsp&nbsp협력사공지&nbsp&nbsp근무일정표
+		&nbsp&nbsp근무시간표 </p> <br>
+
+</div>
+</div>
+
+<div id="noticetable">
+<table class="table  table-bordered">
+	<thead>
+	<tr>
+		<th>번호</th>
+		<th>제목</th>
+		<th>작성자</th>
+		<th>날짜</th>
+		<th>조회수</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<td colspan="5" style="opacity: 0.65; text-align: center;">게시된 글이 없습니다.</td>
+		
+	</tr>
+	
+	</tbody>
+</table>
+
+<a class="btn btn-default" style="float: right;">글쓰기</a>
+
+<div class="text-center">
+	<ul class="pagination">
+		<li><a href="#"><<</a></li>
+		<li><a href="#"><</a></li>
+		<li><a href="#">1</a></li>
+		<li><a href="#">></a></li>
+		<li><a href="#">>></a></li>
+	</ul>
+</div>
+</div>
+<hr >
+
+<!-- footer -->
+<div id="footer">
+	<div class="footerimage">
+		<a href="mac.html">
+			<img alt="logo" src="mac.png">
+		</a>
+	</div>
+	<div class="footertext">
+		<p><strong>대표</strong> : 문주환</p>
+		<p><strong>Tel</strong> : 010-3154-5660</p>
+		<p><strong>Fax</strong> : 070-8668-1238</p>
+		<p><strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a></p>
+		<p><strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호</p>
+	</div>
+</div>
+
+
+<!-- copyright -->
+<div id="copyright">
+	<p>Copyright &copy; All rights reserved.</p>
+</div>
+<script src="https://ajax.googleapis.com/ajax/lib/jquery/1.12.4/jquery.min.js"></script>
+<script src="include/jquery-3.4.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>(주) 맥</title>
+<style type="text/css">
+
+#salary{
+	text-align: center;
+	color: black;
+	font-size: 25px;
+	width: 80%;
+	height: 600px;
+	background-color: #cce6ff;
+	margin: auto;
+	
+}
+
+.salarytd1{
+	text-align: center;
+	
+}
+
+#salaryfieldset{
+	height: 550px;
+	margin: auto;
+	padding: 10px;;
+}
+
+.salarytable{
+	width: 30%;
+	height: 150px;
+	background-color:  white;
+	margin: auto;
+	
+}
+
+
+</style>
+</head>
+<body>
+<div id="salary">
+	<form action="salary.jsp" method="post" >
+
+		<fieldset id="salaryfieldset">
+			<legend><h1>*사원 급여 계산기*</h1></legend>
+	<table class="salarytable"  border="2">
+	<tr class="salarytr1">
+		<td class="salarytd1">사원이름</td>	
+		<td><input type="text" name="name"></td>
+	</tr>
+	
+	<tr class="salarytr1">
+		<td class="salarytd1">직책</td>	
+		<td>
+		<input type="radio" class="radio1" name="position" value="사원">사원
+		<input type="radio" class="radio1"name="position" value="주임">주임
+		<input type="radio" class="radio1"name="position" value="대리">대리<br>
+		<input type="radio" class="radio1" name="position" value="과장">과장
+		<input type="radio" class="radio1" name="position" value="대표이사">대표이사
+		</td>
+	</tr>
+	
+	
+	
+	<tr class="salarytr1">
+		<td class="salarytd1">시급</td>	
+		<td><input type="text" name="basic" placeholder="(단위: 원)"></td>
+	</tr>
+	
+	<tr class="salarytr1">
+		<td class="salarytd1">근무시간</td>	
+		<td><input type="text" name="time" placeholder="(단위) 시간""></td>
+	</tr>
+	
+
+		
+	<tr class="salarytr1">
+		<td colspan="2">
+
+		<button class="button" >확인</button>
+
+		</td>
+	</tr>
+	</table>
+	
+	<p><h3>*직책별 상여금 비율이 다릅니다*</h3></p>
+	<p><h6><대표이사 4.5%, 과장 3.5%, 대리 2.5%, 주임 2.0%, 사원 1.5%></h6></p>
+		</fieldset>
+
+	</form>
+	
+</div> 
+</body>
+</html>

@@ -1,0 +1,1747 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert title here</title>
+<script src="../include/jquery-3.4.1.min.js"></script>
+<link rel="stylesheet"
+	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script
+	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script src="../include/jquery.magnify.js"></script>
+<script type="text/javascript">
+$(function() {
+	$("#img1").magnify();
+});
+
+
+	
+
+$(function() {
+	list();
+});
+
+function list() {
+	$.ajax({
+		type: "post",
+		url : "/Project/employee_servlet/list.do",
+		success: function(result) {
+			console.log(result);
+			$("#employeeList").html(result);
+		}
+	});
+	
+
+
+
+		
+	
+	
+}
+</script>
+<style type="text/css">
+#logo {
+	text-align: center;
+	background-color: white;
+}
+
+#menu {
+	text-align: center;
+	background-color: white;
+}
+
+#menu>li>a {
+	background-color: #cce6ff;
+}
+
+#mainfooter {
+	text-align: center;
+}
+
+#mainfooter>.footertext {
+	opacity: 0.7;
+}
+
+#mainsecond, #mainthird, #mainfourth {
+	background-color: #cce6ff;
+}
+
+#panel1 {
+	background-color: #cce6ff;
+}
+#registerdiv{
+	text-align: center;
+	background-color: white;
+	font-size: 1.12em;
+	border: 1px solid;
+	margin: auto;
+}
+</style>
+</head>
+<body>
+	<div data-role="page" id="mainfirst">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" id="logo">
+			<p>
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div data-role="content">
+			<marquee scrollamount="10" behavior="alternate">(주) 맥에 오신 것을 환영합니다.</marquee>
+			<hr>
+
+			<ul data-role="listview" data-inset="true" 	class="content">
+				<li><a href="#panel1" data-transition="slide" style="background-color: #cce6ff;">로그인하기</a></li>
+				<li><a href="#noticethird" >공지사항</a></li>
+				<li><a href="#managementthird" data-transition="slide"> 사원등록</a></li>
+				<li><a href="#employmentfirst" data-transition="slide">지원하기</a></li>
+				<li><a href="#noticesixth" data-transition="slide">근무일정표</a></li>
+				<li><a href="#noticeseventh" data-transition="slide">근무시간표</a></li>
+			</ul>
+			
+		</div>
+
+		<div data-role="footer" id="mainfooter" data-position="fixed">
+			<a href="#mainfirst" data-role="button" style="width: 75px;"
+				class="ui-btn-active">HOME</a> <a
+				href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> 
+				<a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+
+			<hr>
+
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+	<!-- 메인 홈페이지 끝 -->
+
+
+
+
+	<!--회사 소개 -->
+	<div data-role="page" id="introducefirst">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" id="logo" data-add-back-btn="true"
+			data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+
+			<h1 style="font-size: 1.5em;">회사 소개</h1>
+		</div>
+
+		<div data-role="content" style="background-color: white;">
+			<div data-role="tabs">
+				<div data-role="navbar">
+					<ul id="menu">
+						<li><a href="#tab1">CEO인사말</a></li>
+						<li><a href="#tab2">회사소개</a></li>
+						<li><a href="#tab3">회사연혁</a></li>
+						<li><a href="#tab4">오시는길</a></li>
+					</ul>
+				</div>
+				<br>
+				<br>
+				<br>
+
+				<div id="tab1" style="background-color: white; text-align: center;">
+					<img src="../images/mac.png" width="55%">
+					<h2>CEO인사말</h2>
+					<br>
+					<div>
+						<p>
+						<h4 style="color: #ff6666;">맥은 고객만족을 위해 노력을 다하겠습니다.</h4>
+						</p>
+						<p style="font-size: 1.05em;">
+							안녕하십니까? 맥을 찾아 주신 여러분을 진심으로 환영합니다.<br> 평소 당사를 아끼고 성원해 주시는 고객
+							여러분께 깊이 감사 드립니다. 저희 주식회사 맥 은 전문가의 정신으로 고객의 미래 가치를 키우는 시너지파트너가 되도록
+							노력 하겠습니다. 감사합니다.
+						</p>
+						<br>
+						<h3>(주) 맥 대표이사 문주환</h3>
+					</div>
+				</div>
+
+				<div id="tab2" data-role="collapsible-set">
+					<div data-role="collapsible">
+						<h2>고객 만족의 실현</h2>
+						<p>국내 연성인쇄회로기판(FPCB) 생산System에 AOI공정을 Inline으로 구축하여 품질보증을 위한
+							신속한 대응과 개선 활동으로 고객의 품질만족 에 기여한다.</p>
+					</div>
+
+					<div data-role="collapsible">
+						<h2>AOI System</h2>
+						<p>AOI System은 생산 중에 발생하는 결함 요소를 즉시 차단하고 분석하여 부적합 사항은 앞 공정
+							피드백을 통해 지속적인 품질 개선 활동에 이바지 한다.</p>
+					</div>
+
+					<div data-role="collapsible">
+						<h2>보증업체(guaranty)</h2>
+						<p>
+							육안검사에 의존한 Human error를 없애고 고객만족을 지향하며 이른바 믿고 맡길 수 있는 <span
+								style="text-decoration: underline;">보증업체(guaranty)</span> 를
+							설립한다.
+					</div>
+
+					<div data-role="collapsible" data-collapsed="false">
+						<h2>윤리경영</h2>
+						<ol>
+							<li>고객만족의 실현</li>
+							<li>품질에 대한 헌신적 기여</li>
+							<li>환경 친화적 경영</li>
+							<li>지속적인 개선</li>
+						</ol>
+					</div>
+				</div>
+
+				<div id="tab3" data-role="collapsible-set">
+					<div data-role="collapsible" data-collapsed="false">
+						<h2>2013.03</h2>
+						<p>
+							(주) 맥 회사 건립<br>-SI Flex 신규등록 거래
+						</p>
+					</div>
+
+					<div data-role="collapsible">
+						<h2>2016.01</h2>
+						<p>-영풍전자㈜ 신규등록 거래-FPCB, RF_Module</p>
+					</div>
+
+					<div data-role="collapsible">
+						<h2>2017.12</h2>
+						<p>-회사 확장이전</p>
+					</div>
+
+					<div data-role="collapsible">
+						<h2>2019.07</h2>
+						<p>-㈜비에이치 신규등록 거래-FPCB</p>
+					</div>
+
+					<div data-role="collapsible">
+						<h2>2019.08</h2>
+						<p>-코리아써키트㈜ 신규등록 거래</p>
+					</div>
+				</div>
+
+				<div id="tab4">
+					<h1 style="text-align: center;">오시는길</h1>
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.9870030516513!2d126.
+		78272701480365!3d37.31913554601652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b6e26fc
+		16ae81%3A0x5182ebaf6ad90d0c!2z6rK96riw64-EIOyViOyCsOyLnCDri6jsm5Dqtawg7JuQ7Iuc64-ZIDgxOC01!
+		5e0!3m2!1sko!2skr!4v1576299343227!5m2!1sko!2skr"
+						width="100%" height="300" frameborder="5" style="margin: 2% 0;"
+						allowfullscreen=" "></iframe>
+					<fieldset style="border: 1px solid;">
+						<legend style="text-align: center;">
+							<h1 style="color: blue;">주식회사 맥</h1>
+						</legend>
+						<h3 style="text-align: center;">경기도 안산시 단원구 원시동 818-5 202호</h3>
+						<br>
+					</fieldset>
+					<br>
+					<br>
+					<br>
+
+
+
+				</div>
+
+
+
+
+			</div>
+		</div>
+		<div data-role="footer" id="mainfooter">
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+	<!--채용정보 -->
+	<div data-role="page" id="employmentfirst">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" id="logo" data-add-back-btn="true"
+			data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+
+			<h1 style="font-size: 1.5em;">채용정보</h1>
+		</div>
+
+		<div data-role="content" style="background-color: white;">
+			<div data-role="tabs">
+				<div data-role="navbar">
+					<ul id="menu">
+						<li><a href="#tabs1">생산직채용</a></li>
+						<li><a href="#tabs2">사무직채용</a></li>
+					</ul>
+				</div>
+				<br>
+				<br>
+				<br>
+
+				<div id="tabs1" style="background-color: white; text-align: center;">
+					<div>
+						<h1>생산직채용</h1>
+						<br>
+						<p>
+						<h2 style="color: #ff6666;">
+							(주) 맥과 함께<br> 성장할 인재를 모집합니다.
+						</h2>
+						</p>
+					</div>
+					<hr>
+					<br>
+
+					<div>
+						<h3>
+							<채용시기>
+						</h3>
+						<p style="font-size: 1.05em;">
+							맥 경영 상황에 따라 수시로 채용공고를 진행합니다.<br>사무직 또는 생산직 직원 모두 응시 가능합니다.
+						</p>
+						<br>
+					</div>
+					<hr>
+					<br>
+
+					<div>
+						<h3>
+							<채용절차>
+						</h3>
+						<img src="../images/채용.jpg" width="100%"><br>
+						<br>
+						<br>
+						<div style="float: left; width: 25%;">
+							<img src="../images/step1.png" style="margin-bottom: 0;">
+							<h4 style="margin-top: 0; width: 100%; margin: auto;">서류전형</h4>
+						</div>
+						<div style="float: right; width: 75%;">
+							<h4>인재상 및 조직적합성에 부합하는 지원자 선발</h4>
+						</div>
+						<hr style="clear: both;">
+						<br>
+						<br>
+
+						<div style="float: left; width: 25%;">
+							<img src="../images/step2.png" style="margin-bottom: 0;">
+							<h4 style="margin-top: 0; width: 100%; margin: auto;">면접전형</h4>
+						</div>
+						<div style="float: right; width: 75%;">
+							<ul style="text-align: left;">
+								<li>실무진 면접 과 부서장 면접으로 구성</li>
+								<li>多 대 多 면접으로 진행</li>
+								<li>우수역량 보유자 및 직무관련 경력자 우대</li>
+							</ul>
+						</div>
+						<hr style="clear: both;">
+						<br>
+						<br>
+
+						<div style="float: left; width: 25%;">
+							<img src="../images/step3.png" style="margin-bottom: 0;">
+							<h4 style="margin-top: 0; width: 100%; margin: auto;">최종합격</h4>
+						</div>
+						<div style="float: right; width: 75%;">
+							<h4>채용홈페이지 및 개별 연락을 통한 합격자 발표</h4>
+						</div>
+						<hr style="clear: both;">
+						<br>
+						<br>
+					</div>
+
+					<div>
+						<h3>
+							<유의사항>
+						</h3>
+						<ul style="text-align: left;">
+							<li>작성된 내용이 사실과 다를 경우 합격이 취소될 수 있습니다.</li>
+							<li>보훈대상자의 경우 관련법에 의거 우대합니다.</li>
+							<li>일정 및 전형 내용은 전형상황에 따라 변동될 수 있습니다.</li>
+						</ul>
+					</div>
+					<hr>
+					<br>
+					<h3 style="clear: both;">(주) 맥 대표이사 문주환</h3>
+				</div>
+
+				<div id="tabs2" style="background-color: white; text-align: center;">
+					<div>
+						<h1>사무직채용</h1>
+						<br>
+						<p>
+						<h2 style="color: #ff6666;">
+							(주) 맥과 함께<br> 성장할 인재를 모집합니다.
+						</h2>
+						</p>
+					</div>
+					<hr>
+					<br>
+
+					<div>
+						<h3>
+							<채용시기>
+						</h3>
+						<p style="font-size: 1.05em;">
+							맥 경영 상황에 따라 수시로 채용공고를 진행합니다.<br>사무직 또는 생산직 직원 모두 응시 가능합니다.
+						</p>
+						<br>
+					</div>
+					<hr>
+					<br>
+
+					<div>
+						<h3>
+							<채용절차>
+						</h3>
+						<img src="../images/채용.jpg" width="100%"><br>
+						<br>
+						<br>
+						<div style="float: left; width: 25%;">
+							<img src="../images/step1.png" style="margin-bottom: 0;">
+							<h4 style="margin-top: 0; width: 100%; margin: auto;">서류전형</h4>
+						</div>
+						<div style="float: right; width: 75%;">
+							<h4>인재상 및 조직적합성에 부합하는 지원자 선발</h4>
+						</div>
+						<hr style="clear: both;">
+						<br>
+						<br>
+
+						<div style="float: left; width: 25%;">
+							<img src="../images/step2.png" style="margin-bottom: 0;">
+							<h4 style="margin-top: 0; width: 100%; margin: auto;">면접전형</h4>
+						</div>
+						<div style="float: right; width: 75%;">
+							<ul style="text-align: left;">
+								<li>실무진 면접과 임원면접, CEO 면접으로 구성</li>
+								<li>신입의 경우 多 대 多 면접, 경력의 경우 1 대 多 면접이 기본형태</li>
+								<li>우수한 역량 보유한 자, 업무관련 지식 및 수행능력이 있는 자를 선발</li>
+							</ul>
+						</div>
+						<hr style="clear: both;">
+						<br>
+						<br>
+
+						<div style="float: left; width: 25%;">
+							<img src="../images/step3.png" style="margin-bottom: 0;">
+							<h4 style="margin-top: 0; width: 100%; margin: auto;">최종합격</h4>
+						</div>
+						<div style="float: right; width: 75%;">
+							<h4>채용홈페이지 및 개별 연락을 통한 합격자 발표</h4>
+						</div>
+						<hr style="clear: both;">
+						<br>
+						<br>
+					</div>
+
+					<div>
+						<h3>
+							<유의사항>
+						</h3>
+						<ul style="text-align: left;">
+							<li>보훈대상자의 경우 관련법에 의거 우대합니다.</li>
+							<li>일정 및 전형 내용은 전형상황에 따라 변동될 수 있습니다.</li>
+							<li>작성된 내용이 사실과 다를 경우 합격이 취소될 수 있습니다.</li>
+						</ul>
+					</div>
+					<hr>
+					<br>
+					<h3 style="clear: both;">(주) 맥 대표이사 문주환</h3>
+				</div>
+				<br>
+
+
+			</div>
+		</div>
+		<div data-role="footer" id="mainfooter">
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- 사원관리 -->
+	<div data-role="page" id="managementfirst">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" id="logo" data-add-back-btn="true"
+			data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>사원관리</h1>
+		</div>
+
+		<div data-role="content" style="width: 50%; margin: 80px auto;">
+			<a href="#managementsecond" data-role="button" data-icon="bullets"
+				data-iconpos="top" data-transition="slide">사원목록</a> <a
+				href="#managementthird" data-role="button" data-icon="plus"
+				data-iconpos="top" data-transition="flip">사원등록</a>
+		</div>
+
+		<div data-role="footer" id="mainfooter" data-position="fixed">
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- 사원목록 -->
+	<div data-role="page" id="managementsecond">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" style="background-color: white;"
+			data-add-back-btn="true" data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>사원목록</h1>
+		</div>
+
+		<div data-role="content">
+		<div id="employeeList" style="width: 95%; border: 1px solid;">
+		
+		</div>
+			<!--<table class="ui-responsive table-stripe" data-mode="columntoggle"
+				data-role="table">
+				<thead>
+					<tr>
+						<th data-priority="1">사원번호</th>
+						<th data-priority="1">직책</th>
+						<th data-priority="1">이름</th>
+						<th data-priority="2">성별</th>
+						<th data-priority="1">소속</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>17731475</td>
+						<td>대표이사</td>
+						<td>문주환</td>
+						<td>남자</td>
+						<td>사무팀</td>
+					</tr>
+
+					<tr>
+						<td>57461751</td>
+						<td>이사</td>
+						<td>김지현</td>
+						<td>여자</td>
+						<td>사무팀</td>
+					</tr>
+
+					<tr>
+						<td>35717484</td>
+						<td>주임</td>
+						<td>박광일</td>
+						<td>남자</td>
+						<td>생산팀</td>
+					</tr>
+
+					<tr>
+						<td>65741754</td>
+						<td>반장</td>
+						<td>허효령</td>
+						<td>여자</td>
+						<td>생산팀</td>
+					</tr>
+
+					<tr>
+						<td>16687147</td>
+						<td>사원</td>
+						<td>이수진</td>
+						<td>여자</td>
+						<td>생산팀</td>
+					</tr>
+
+					<tr>
+						<td>16572475</td>
+						<td>사원</td>
+						<td>김나영</td>
+						<td>여자</td>
+						<td>생산팀</td>
+					</tr>
+
+					<tr>
+						<td>15731475</td>
+						<td>사원</td>
+						<td>변홍</td>
+						<td>여자</td>
+						<td>생산팀</td>
+					</tr>
+
+					<tr>
+						<td>56471514</td>
+						<td>사원</td>
+						<td>홍영애</td>
+						<td>여자</td>
+						<td>생산팀</td>
+					</tr>
+				</tbody>
+
+
+
+			</table>  -->
+		</div>
+
+		<div data-role="footer" id="mainfooter">
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- 사원등록 -->
+	<div data-role="page" id="managementthird">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" style="background-color: white;"
+			data-add-back-btn="true" data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>사원등록</h1>
+		</div>
+
+		<div data-role="content">
+		<div style="width: 100%;" id="registerdiv" >
+		<form>
+	<img src="../images/mac.png" width="80%" style="margin: auto;"><hr style="width: 100%;"><br><br>
+	사원번호 : <br><br>
+	<input type="text" id="no" class="registerdiv_input"  data-role="none"><br><br>
+	<hr style="width: 80%;"><br>
+	
+	비밀번호 : <br><br>
+	<input type="password" id="password" class="registerdiv_input" data-role="none"><br><br>
+	<hr style="width: 80%;"><br>
+	
+	이름 : <br><br>
+	<input type="text" id="name" class="registerdiv_input" data-role="none"><br><br>
+	<hr style="width: 80%;"><br>
+	
+	성별 : 
+	<select id="gender" class="registerdiv_input" data-role="none">
+		<option value="남성">남성</option>
+		<option value="여성">여성</option>
+	</select><br><br>
+	<hr style="width: 80%;"><br>
+	
+	
+	연락처 : <br><br>
+	<input type="text" id="hp" class="registerdiv_input" data-role="none"><br><br>
+	<hr style="width: 80%;"><br>
+	
+	주소 : <br><br>
+	<input type="text" id="address" class="registerdiv_input" data-role="none"><br><br>
+	<hr style="width: 80%;"><br>
+	
+	소속 :
+	<select id="team" class="registerdiv_input" data-role="none">
+		<option value="사무팀">사무팀</option>
+		<option value="생산팀">생산팀</option>
+	</select><br><br>
+	<hr style="width: 80%;"><br>
+	
+	입사일 : 
+	<input type="date" id="join_date" class="registerdiv_input" data-role="none"><br><br>
+	<hr style="width: 80%;"><br>
+	
+	<button type="button" id="btnSave" style="font-size: 1.1em;" class="registerdiv_input" data-role="none" onclick="alert('등록되었습니다')">등록</button><br>
+	
+</form>
+</div>
+		
+		</div>
+
+		<div data-role="footer" id="mainfooter" >
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- 공지사항 -->
+	<div data-role="page" id="noticefirst">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" id="logo" data-add-back-btn="true"
+			data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>공지사항</h1>
+		</div>
+
+		<div data-role="content" style="width: 90%; margin: auto;">
+			<ul data-role="listview" data-inset="true" data-count-theme="b">
+				<li><a href="#noticesecond">보도자료</a></li>
+				<li><a href="#noticethird">공지사항<span class="ui-li-count">new</span></a></li>
+				<li><a href="#noticefourth">문의사항</a></li>
+				<li><a href="#noticefifth">협력사공지<span class="ui-li-count">6</span></a></li>
+				<li><a href="#noticesixth">근무일정표<span class="ui-li-count">hot</span></a></li>
+				<li><a href="#noticeseventh">근무시간표<span class="ui-li-count">1</span></a></li>
+			</ul>
+		</div>
+
+		<div data-role="footer" id="mainfooter" data-position="fixed">
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- 보도자료 -->
+	<div data-role="page" id="noticesecond">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" id="logo" data-add-back-btn="true"
+			data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>보도자료</h1>
+		</div>
+
+		<div data-role="content" style="width: 90%; margin: auto;">
+			<ul data-role="listview" data-inset="true">
+				<li><a href="#">
+						<p class="ui-li-aside">2020/01/03</p> <br>
+						<hr>
+						<h3>영풍전자, 애플 OLED 아이폰에 TSP용 RFPCB 공급</h3>
+						<p>영풍전자가 애플에 터치스크린패널(TSP)용 연성인쇄회로기판(FPCB)을 납품한다. 올 가을 출시 예정인
+							유기발광다이오드(OLED) 아이폰에 사용될 것으로 예상된다.</p>
+				</a></li>
+
+				<li><a href="#">
+						<p class="ui-li-aside">2019/11/30</p> <br>
+						<hr>
+						<h3>코리아써키트,PCB 시장 재편에 高성장…'매수'로 상향-대신</h3>
+						<p>대신증권은 2일 코리아써키트(007810)에 대해 올해 PCB(인쇄회로기판) 시장 재편에 따른 수혜로
+							수익성... 반도체용 PCB의 매출 호조 등으로 올해 턴어라운드가 가능하다”고 설명했다.</p>
+				</a></li>
+
+				<li><a href="#">
+						<p class="ui-li-aside">2019/09/17</p> <br>
+						<hr>
+						<h3>"영풍, PCB 자회사 예상외 선전하며 기대 이상 실적"</h3>
+						<p>키움증권은 영풍이 인쇄회로기판(PCB) 자회사들의 예상외 선전 덕분에 올 3·4분기 기대 이상의 실적을
+							거둘 수 있었다고 평가했다.</p>
+				</a></li>
+
+
+			</ul>
+		</div>
+
+		<div data-role="footer" id="mainfooter" data-position="fixed">
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+
+
+	<!-- 공지사항 -->
+	<div data-role="page" id="noticethird">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" style="background-color: white;"
+			data-add-back-btn="true" data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>공지사항 </h1>
+		</div>
+
+		<div data-role="content">
+		
+		<ul data-role="listview" style="clear: both; ">
+			<li><a href="#">
+			<h3>크리스마스 근무 일정</h3>
+			</a></li>	
+			
+			<li><a href="#">
+			<h3>제품별 검사기준표</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>AOI 검사 주의사항</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>전자증권 제도 시행에 따른 전자증권 전환대상 주권<br> 등의 권리자 보호 안내</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>휴가 안내합니다.</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>영풍전자 거래</h3>
+			</a></li>	
+		</ul><br>
+		<a href="#" data-role="button" data-inline="true" style="float: right; ">글쓰기</a>
+		</div>
+
+
+		<div data-role="footer" id="mainfooter" >
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone" >전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+
+<!-- 문의사항 -->
+	<div data-role="page" id="noticefourth">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" style="background-color: white;"
+			data-add-back-btn="true" data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>문의사항 </h1>
+		</div>
+
+		<div data-role="content">
+		
+		<ul data-role="listview" style="clear: both; ">
+			<li><h3 style="text-align: center;">게시된 글이 없습니다.</h3><li>
+		</ul><br>
+		<a href="#" data-role="button" data-inline="true" style="float: right; ">글쓰기</a>
+		</div>
+
+
+		<div data-role="footer" id="mainfooter" >
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone" >전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+
+
+<!-- 협력사공지 -->
+	<div data-role="page" id="noticefifth">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" style="background-color: white;"
+			data-add-back-btn="true" data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>협력사 공지 </h1>
+		</div>
+
+		<div data-role="content">
+		
+		<ul data-role="listview" style="clear: both; ">
+			<li><a href="#">
+			<h3>※협력사 지원 안내※</h3>
+			</a></li>	
+			
+			<li><a href="#">
+			<h3>코리아서키트</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>㈜비에이치</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>인터플렉스</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>	영풍전자</h3>
+			</a></li>
+			
+			<li><a href="#">
+			<h3>	SI FLEX </h3>
+			</a></li>	
+		</ul><br>
+		<a href="#" data-role="button" data-inline="true" style="float: right; ">글쓰기</a>
+		</div>
+
+
+		<div data-role="footer" id="mainfooter" >
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone" >전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+
+
+
+<!-- 근무일정표 -->
+	<div data-role="page" id="noticesixth">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" id="logo" data-add-back-btn="true"
+			data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>근무일정표</h1>
+		</div>
+
+		<div data-role="content" style="width: 90%; margin: auto;">
+			<ul data-role="listview" data-inset="true" data-count-theme="b">
+				<li><a href="#schedule">2019년 12월 근무일정표<span class="ui-li-count">new</span></a></li>
+				<li><a href="#">2019년 11월 근무일정표</a></li>
+				<li><a href="#">2019년 10월 근무일정표</a></li>
+				<li><a href="#">2019년 9월 근무일정표<span class="ui-li-count">6</span></a></li>
+				<li><a href="#">2019년 8월 근무일정표<span class="ui-li-count">hot</span></a></li>
+				<li><a href="#">2019년 7월 근무일정표<span class="ui-li-count">1</span></a></li>
+			</ul>
+		</div>
+
+		<div data-role="footer" id="mainfooter" data-position="fixed">
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+	
+	
+	<!-- 근무일정표-1 -->
+	<div data-role="page" id="schedule">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" style="background-color: white;"
+			data-add-back-btn="true" data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>2019년 12월 근무일정표</h1>
+		</div>
+
+		<div data-role="content">
+				
+				<div>
+					<a href="../images/근무일정표2.png" id="img1" data-ajax="false" ><img src="../images/근무일정표2.png" width="100%" height="400px" ></a>
+				</div>
+
+		</div>
+
+		<div data-role="footer" id="mainfooter" >
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+	
+	
+	<!-- 근무시간표 -->
+	<div data-role="page" id="noticeseventh">
+		<div data-role="panel" id="panel1" data-display="overlay">
+			<form>
+				<h1>로그인</h1>
+				<label for="name">사원번호 : </label> <input name="name" id="name"
+					type="text" value="" data-mini="true" data-clear-btn="true">
+				<label for="password">비밀번호 : </label> <input name="password"
+					id="password" type="text" value="" data-mini="true"
+					data-clear-btn="true">
+				<div class="ui-grid-a">
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">로그인</a>
+					</div>
+					<div class="ui-block-a">
+						<a href="#" data-role="button" data-rel="close">취소</a>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div data-role="header" style="background-color: white;"
+			data-add-back-btn="true" data-back-btn-text="이전">
+			<p style="text-align: center;">
+				<a href="#mainfirst" data-position="fixed"><img
+					src="../images/mac.png"></a>
+			</p>
+			<div data-role="navbar">
+				<ul id="menu">
+					<li><a href="#introducefirst" data-role="button">회사소개</a></li>
+					<li><a href="#employmentfirst" data-role="button">채용정보</a></li>
+					<li><a href="#managementfirst" data-role="button">사원관리</a></li>
+					<li><a href="#noticefirst" data-role="button">공지사항</a></li>
+				</ul>
+			</div>
+			<h1>근무시간표</h1>
+		</div>
+
+		<div data-role="content">
+				
+				<div>
+					<a href="../images/근무시간표2.png" id="img1" data-ajax="false" ><img src="../images/근무시간표2.png" width="100%" height="400px" ></a>
+				</div>
+
+		</div>
+
+		<div data-role="footer" id="mainfooter" >
+			<a href="#mainfirst" data-role="button" style="width: 75px;">HOME</a>
+			<a href="../../Project19_12_10/mac.html" data-ajax="false"
+				data-role="button" style="width: 75px;">PC버전</a> <a href="#panel1"
+				data-role="button" style="width: 75px;">Login</a>
+			<hr>
+			<div data-role="controlgroup" data-type="horizontal">
+				<a href="tel:01057778339" data-role="button" target="_blank"
+					data-icon="phone">전화하기</a> <a href="mailto:khm932001@naver.com"
+					data-role="button" data-icon="mail ">메일보내기</a>
+			</div>
+			<div class="footertext">
+				<p>
+					<strong>대표</strong> : 문주환
+				</p>
+				<p>
+					<strong>Tel</strong> : 010-3154-5660
+				</p>
+				<p>
+					<strong>Fax</strong> : 070-8668-1238
+				</p>
+				<p>
+					<strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a>
+				</p>
+				<p>
+					<strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호
+				</p>
+			</div>
+			<hr>
+
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>

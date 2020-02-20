@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>(주) 맥</title>
+<script src="include/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	list();
+	$("#btnSave").click(function() {
+		insert();
+	});
+});
+
+function list() {
+	$.ajax({
+		type: "post",
+		url : "/Project/employee_servlet/list.do",
+		success: function(result) {
+			console.log(result);
+			$("#employeeList").html(result);
+		}
+	});
+}
+
+function insert() {
+	var param="no="+$("#no").val()
+					+"&password="+$("#password").val()
+					+"&name="+$("#name").val()
+					+"&gender="+$("#gender").val()
+					+"&hp="+$("#hp").val()
+					+"&address="+$("#address").val()
+					+"&team="+$("#team").val()
+					+"&join_date="+$("#join_date").val();
+	
+	$.ajax({
+		type: "post",
+		url: "/Project/employee_servlet/join.do",
+		data: param,
+		success: function() {
+			list();
+			$("#no").val("");
+			$("#password").val("");
+			$("#name").val("");
+			$("#gender").val("");
+			$("#hp").val("");
+			$("#address").val("");
+			$("#team").val("");
+			$("#join_date").val("");
+		}
+	});
+	
+
+	$(function() {
+		list();
+	});
+	
+
+}
+</script>
+<style type="text/css">
+body{
+	display: block;
+	padding: 0;
+	width: 95%;
+	margin: auto;
+}
+
+/* Logo */
+#logo{ 
+	margin: 1% auto 2% auto;  
+padding-top: 20px; 
+padding-bottom: 8px; }
+
+/* menu */
+#mainmenu{
+	height: 33px;
+	padding: 0 18%;
+	margin: auto;
+	background-color: #cce6ff;
+ 	
+	
+}
+
+#mainmenu .menu{
+	list-style-type: none;
+	font-size: 20px;
+	display : flex;
+	
+	
+}
+
+.menu>li{
+	line-height: 20px;
+	width: 100%;
+	height: 31px;
+	background:  #cce6ff;
+	
+}
+
+.menu>li>a{
+	text-align : center;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	padding: 6px;
+	letter-spacing: 0.25em;
+	color: black;
+}
+.menu>li>a:hover{
+	background-color:  #339cff;
+	color: white;
+}
+.menu>li:hover .submenu{
+	opacity: 1;
+	visibility: visible;
+	
+}
+
+.submenu{
+	list-style-type: none;
+	font-size: 17px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	opacity: 0;
+	visibility: hidden;
+	display: flex;
+	
+	
+}
+
+.submenu>li{
+	padding: 0 1%;
+	line-height: 40px;
+	width: 110px;
+	background:  #cce6ff;
+	
+	
+	}
+
+.submenu>li>a{
+	text-decoration: none;
+	display: block;
+	padding-left :0;
+	font-weight: bold;
+	color: black;
+	
+	
+}
+
+.submenu>li>a:hover {
+	color: #339cff;
+	text-decoration: underline;
+}
+
+/* slide */
+#slide{
+	background-image: url("slide2.png");
+	background-size: cover;
+	color: white;
+	height: 500px;
+	display: block;
+}
+
+#slide .aoi{
+	text-align: center;
+	font-size: 70px;
+	font-weight: bold;
+	height: 28px;
+	margin: 70px 0 75px 0;
+}
+#slide .p1{
+	text-align: center;
+	font-weight: bold;
+	font-size:30px;
+	padding: 10px;
+	height: 145px;
+}
+
+
+
+/* footer */
+#footer{
+	display: inline-block;
+	width: 100%;
+	clear: both;
+		
+}
+#footer .footertext{
+	font-size :15px;
+	padding: auto;
+	float: right;
+	width: 47%;
+	display: inline;
+}
+
+#footer .footerimage{
+	float: left;
+	width: 45%;
+	display: inline;
+}
+#footer .footerimage>a{
+	float: right;
+	margin-top: 59px;
+}
+
+#copyright{
+	text-align: center;
+	font-size: 14px;
+	background-color:  #005cb3;
+	margin-top: auto ;
+	border: 1px solid;
+	color: white;
+}
+
+
+#mySidenav a {
+  position: absolute; 
+  right: -140px; 
+  transition: 0.3s; /* Add transition on hover */
+  padding: 15px; /* 15pxpadding */
+  width: 150px; /* Set a specific width */
+  text-decoration: none; /* Remove underline */
+ font-size: 20px; /* Increase font size */
+  color: white; /* White text color */
+  border-radius: 0 5px 5px 0; /*Rounded corners on the top right and bottom right side */
+  text-align: right;
+  margin-top: 8%;
+}
+
+#mySidenav a:hover {
+  right: 0;
+}
+
+#home {
+  top: 20px;
+  background-color: #9999ff;
+}
+
+#about{
+  top: 80px;
+  background-color:  #9999ff; /* Blue */
+}
+
+#map {
+  top: 140px;
+ background-color: #9999ff; /* Red */
+}
+
+#recruit{
+	top: 200px;
+	background-color: #9999ff;
+}
+
+
+#registerdiv{
+	text-align: center;
+	font-size: 1.5em;
+	font-weight: bold; 
+}
+
+.registerdiv_input{
+	font-size: 25px;
+
+
+}
+
+</style>
+</head>
+<body>
+<!-- sidebar -->
+<div id="mySidenav" class="sidenav">
+  <a href="mac.html" id="home">home</a>
+  <a href="introduce.html" id="about">about</a>
+  <a href="map.html" id="map">오시는길</a>
+  <a href="recruit.html" id="recruit">채용정보</a>
+</div> 
+<!-- Logo -->
+<div id="logo">
+	<center>
+		<a href="mac.html"><img alt="맥 로고" src="mac.png"></a>
+	</center>
+</div>
+
+<!-- Menu -->
+<div id="mainmenu">
+
+		<ul class="menu">
+			<li class="introdue"><a href="#">회사소개</a>
+				<ul class="submenu">
+					<li class="introdue"><a href="ceo.html">CEO인사말</a>
+					<li class="introdue"><a href="introduce.html">회사소개</a>
+					<li class="introdue"><a href="timeline.html">회사연혁</a>
+					<li class="introdue"><a href="map.html">오시는길</a>
+				</ul>
+			</li>
+			
+			<li class="employment"><a href="recruit.html">채용정보</a>
+			</li>
+			
+			<li class="management"><a href="#">사원관리</a>
+				<ul class="submenu">
+					<li class="management"><a href="employee_list.html">사원목록</a></li>
+					<li class="management"><a href="register.html">사원등록</a></li>
+					<li class="management"><a href="salary.html">급여계산</a></li>
+				</ul>
+			</li>
+
+			<li class="notice"><a href="#">공지사항</a>
+				<ul class="submenu">
+					<li class="notice"><a href="news.html">보도자료</a>
+					<li class="notice"><a href="noticeboard.html">공지사항</a>
+					<li class="notice"><a href="QandA.html">문의사항</a>
+				</ul><br><br>
+				<ul class="submenu">
+					<li class="notice"><a href="coop.html">협력사공지</a>
+					<li class="notice"><a href="timetable.html">근무일정표</a>
+					<li class="notice"><a href="timer.html">근무시간표</a>
+				</ul>
+			</li>
+		</ul>
+</div>
+
+
+<div id="slide">
+	<div>
+		<br><p class="aoi">-사원관리-</p><br>
+	</div>
+	<div class="p1">	
+		<p> 사원목록&nbsp&nbsp<strong style="font-size: 1.7em; color:  #80ffe5; ">사원등록</strong>&nbsp&nbsp급여계산
+		<br>
+</div>
+</div>
+
+<!-- 사원 등록! -->
+<h1 style="text-align: center; "><사원 등록 / 삭제></h1>
+<div style="width: 30%; margin: auto; border: 1px solid; " id="registerdiv">
+	<img src="mac.png" width="90%" style="margin: 10px;"><hr style="width: 100%;"><br><br>
+	사원번호 : <br><br>
+	<input type="text" id="no" class="registerdiv_input"><br><br>
+	<hr style="width: 70%;"><br>
+	
+	비밀번호 : <br><br>
+	<input type="password" id="password" class="registerdiv_input"><br><br>
+	<hr style="width: 70%;"><br>
+	
+	이름 : <br><br>
+	<input type="text" id="name" class="registerdiv_input"><br><br>
+	<hr style="width: 70%;"><br>
+	
+	성별 : 
+	<select id="gender" class="registerdiv_input">
+		<option value="남성">남성</option>
+		<option value="여성">여성</option>
+	</select><br><br>
+	<hr style="width: 70%;"><br>
+	
+	
+	연락처 : <br><br>
+	<input type="text" id="hp" class="registerdiv_input"><br><br>
+	<hr style="width: 70%;"><br>
+	
+	주소 : <br><br>
+	<input type="text" id="address" class="registerdiv_input"><br><br>
+	<hr style="width: 70%;"><br>
+	
+	소속 :
+	<select id="team" class="registerdiv_input">
+		<option value="사무팀">사무팀</option>
+		<option value="생산팀">생산팀</option>
+	</select><br><br>
+	<hr style="width: 70%;"><br>
+	
+	입사일 : 
+	<input type="date" id="join_date" class="registerdiv_input"><br><br>
+	<hr style="width: 70%;"><br>
+	
+	<button type="button" id="btnSave" style="font-size: 1.1em;" >등록</button><br>
+	
+
+</div>
+
+
+
+<!-- footer -->
+<div style="width: 100%; margin: auto;">
+<div id="footer">
+	<div class="footerimage">
+		<a href="mac.html">
+			<img alt="logo" src="mac.png">
+		</a>
+	</div>
+	<div class="footertext">
+		<p><strong>대표</strong> : 문주환</p>
+		<p><strong>Tel</strong> : 010-3154-5660</p>
+		<p><strong>Fax</strong> : 070-8668-1238</p>
+		<p><strong>E-mail</strong> :<a href="mailto:maccoltd@naver.com">maccoltd@naver.com</a></p>
+		<p><strong>주소</strong> : 경기도 안산시 단원구 원시동 818-5 202호</p>
+	</div>
+</div>
+
+
+
+<!-- copyright -->
+<div id="copyright">
+	<p>Copyright &copy; All rights reserved.</p>
+</div>
+</div>
+
+</body>
+</html>
