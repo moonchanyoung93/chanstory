@@ -119,6 +119,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="plusDown">
     update board_chan set down=down+1 where num=#{num} 
   </update>
+  
+    <select id="searchCount" resultType="int">
+    select count(*) from board_chan
+    where subject=#{search_option}
+  </select>
 	
 	
 

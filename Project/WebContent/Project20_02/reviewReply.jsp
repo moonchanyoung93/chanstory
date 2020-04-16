@@ -15,6 +15,7 @@
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%@ include file="../include/header.jsp"%>
+<%@ include file="../include/chansession_check.jsp"%>
 <script src="../include/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	function openNav() {
@@ -27,61 +28,16 @@
 		document.getElementById("main").style.marginRight = "0";
 		document.getElementById("main").style.opacity = "1";
 	}
+	$(function() {
+		$("#btnSave").click(function() {
+			document.form1.submit();
+			
+		});
+	});
 	
 	function Logout() {
 		  location.href="${path}/chansession_servlet/logout.do";
 	}
-	
-	$(function() {
-		comment_list();
-		$("#btnSave").click(function() {
-			comment_add();
-		});
-		$("#btnList").click(function() {
-			location.href="/Project/Project20_02/QNA2.jsp";
-		});
-		$("#btnReply").click(function() {
-			var prom=prompt("관리자만 가능합니다. 비밀번호를 입력해 주세요","비밀번호");
-			if(prom=="321"){
-			document.form1.action="${path}/chanqna_servlet/reply.do";
-			document.form1.submit();
-			}else{
-				alert("비밀번호가 틀렸습니다.");
-			}
-		});
-		$("#btnEdit").click(function() {
-			document.form1.action="${path}/chanqna_servlet/pass_check.do";
-			document.form1.submit();
-		});
-	});
-	
-function comment_add() {
-	var param="board_num=${dto.num}&writer="+$("#writer").val()
-	+"&content="+$("#content").val();
-	$.ajax({
-		type:"post",
-		url: "${path}/chanqna_servlet/comment_add.do",
-		data: param,
-		success: function(){
-			$("#writer").val("");
-			$("#content").val("");
-			comment_list();
-		}
-	});
-}
-	
-function comment_list(){
-	$.ajax({
-		type: "post",
-		url: "${path}/chanqna_servlet/commentList.do",
-		data: "num=${dto.num}",
-		success: function(result){
-			$("#commentList").html(result);
-		}
-	});
-}
-
-	
 </script>
 <style>
 body {
@@ -101,7 +57,7 @@ body {
 /* Remove the jumbotron's default bottom margin */
 .jumbotron {
 	margin-bottom: 0;
-	background-color: #302b30; 
+	background-color: #302b30;
 }
 
 #myNavbar {
@@ -226,7 +182,6 @@ body {
 	background-color: white;
 	color: #1b181b;
 }
-
 
 
 
@@ -360,6 +315,10 @@ th {
 	text-align: center;
 }
 
+.inputstyle {
+	background-color: #302b30;
+	border-color: silver;
+}
 
 .inputText {
 	text-align: center;
@@ -384,26 +343,6 @@ th {
 	background-color: black !important;
 	color: white;
 }
-
-.inputstyle {
-	background-color: #302b30;
-	border-color: silver;
-}
-
-.notice_viewtable{
-	font-size: 15px;
-}
-
-.viewbutton{
-	background-color: #302b30;
-	color: white;
-	font-size: 15px;
-}
-
-.comment_text{
-	color: black;
-}
-
 
 .navbar-right2 {
 	width: 10%;
@@ -497,14 +436,12 @@ th {
 	.dropdown-header{
 		color: white !important;
 	}
+
 </style>
 
 </head>
 <body>
-<body>
 	<!-- Log In -->
-<c:choose>
-<c:when test="${sessionScope.userid != null }">
 <form action="${path}/chansession_servlet/login.do">
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -533,7 +470,6 @@ th {
 	</div>
 	
 </div>
-
 </form>
 	
 
@@ -675,157 +611,6 @@ th {
 				</div>
 			</div>
 		</nav>
-		</c:when>
-		
-		<c:otherwise>
-		<form action="${path}/chansession_servlet/login.do">
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	<div style="margin: auto; width: 80%; ">
-		<input name="userid" id="userid" placeholder="ID" style="width: 200px;"><br><br>
-		<input type="password" name="password" id="password" placeholder="PASSWORD" style="width: 200px;"><br><br>
-		<div style=" width: 80%; ">
-			<input type="submit" class="btnLogin" value="Log In">
-		</div >
-		<hr style="color: white; border: 0.4px solid; opacity: 0.2; width: 95%; margin: 20px 2px;">
-		<div style="width: 95%; margin: 20px 2px; ">	
-		<button type="button" class="btnLoginN"><img src="images/naver.png" width="30" height="30" style="margin-right:  18px;">네이버 로그인</button>
-		<button type="button" class="btnLoginK"><img src="images/kakao.png" width="60" height="30" style="margin-left:   -20px;">카카오 로그인</button>
-		<button type="button" class="btnLoginF"><img src="images/facebook.png" width="30" height="20" style="margin-right:  15px;">페이스북 로그인</button>
-		</div>
-		<hr style="color: white; border: 0.4px solid; opacity: 0.2; width: 95%; margin: 20px 2px;">
-	
-		<div style="width: 95%; ">
-		<button type="button" class="btnFind_id">아이디 찾기</button>
-		<button type="button" class="btnFind_password">비밀번호 찾기</button><br> <br> 
-		<button type="button" class="btnJoin" onclick="goJoin()">회원 가입</button>
-		</div>
-	</div>
-	
-</div>
-</form>
-<div id="main">
-
-<!-- 로고 위 주문배송 등등 -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    <!-- 작은창일때 생기는 메뉴 바 -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar2">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar2">
-      <ul class="nav navbar-nav" style="float: left; width: 45%; font-size: 1.15em; ">
-        <li><a href="#"  class="menu-upper" onclick="openNav()">LOGIN</a></li>
-        <li><a href="#" class="menu-upper" onclick="goJoin()">JOIN US</a></li>
-        <li><a href="#" class="menu-upper">CART <span class="badge">0</span></a></li>
-        <li><a href="#" class="menu-upper">ORDER</a></li>
-        <li><a href="#" class="menu-upper">MY PAGE</a></li>
-        <li><a href="#" class="menu-upper">+BOOKMARK</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right" style=" width: 24%; font-size: 1.15em; ">
-      	<li><a href="../Project20_02/notice2.jsp" class="menu-upper">NOTICE</a></li>
-						<li><a href="../Project20_02/FAQ2.jsp" class="menu-upper">FAQ</a></li>
-						<li><a href="../Project20_02/QNA2.jsp" class="menu-upper">Q&A</a></li>
-						<li><a href="../Project20_02/review2.jsp" class="menu-upper">REVIEW</a></li>
-						<li><a href="../Project20_02/event2.jsp" class="menu-upper">EVENT</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- 로고 -->
-<div class="jumbotron">
-  <div class="container text-center " >
-  <a href="../Project20_02/main.jsp" ><img src="../Project20_02/images/logo.png" width="30%" class="logo_img"></a><br><br>
-    <p style="color:  white; font-size: 1.6em;">S I M P L I C T Y</p>
-  </div>
-</div>
-
-<!-- 메뉴 -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-    <!-- 작은창일때 생기는 메뉴 바 -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav ">
-        <li><a href="../Project20_02/main.jsp" class="menu">HOME</a></li>
-        <li><a href="#" class="menu  dropdown-toggle" data-toggle="dropdown">NEW 5%</a></li>
-        <li><a href="#" class="menu dropdown-toggle" data-toggle="dropdown">BEST 30</a></li>
-     
-        <li><a href="#" class="menu dropdown-toggle" data-toggle="dropdown">OUTER</a>
-        	<ul class="dropdown-menu" style="font-size: 0.8em;">
-	        	 <li class="dropdown-header" ><a href="#" class="dropdown-header" style=" font-size: 1.7em; text-align: left;">OUTER</a></li>
- 		      	 <li class="divider"></li>	
- 		      	 <li><a href="#">COAT</a></li>
- 			   	 <li><a href="#">JACKET</a></li>
-			     <li><a href="#">JUMPER</a></li></ul>
-        </li>
-     
-        <li><a href="#" class="menu dropdown-toggle" data-toggle="dropdown">TOP</a>
-        	<ul class="dropdown-menu" style="font-size: 0.8em;">
-	        	 <li class="dropdown-header" ><a href="#" class="dropdown-header" style=" font-size: 1.7em; text-align: left;">TOP</a></li>
- 		      	 <li class="divider"></li>	
- 		      	 <li><a href="#">TEE</a></li>
- 			   	 <li><a href="#">SHIRTS</a></li>
-			     <li><a href="#">KNIT</a></li>
-			     <li><a href="#">VEST</a></li>
-			     <li><a href="#">MTM</a></li>
-			 </ul>
-        </li>
-        
-        <li><a href="#" class="menu dropdown-toggle" data-toggle="dropdown">BOTTOM</a>
-        	<ul class="dropdown-menu" style="font-size: 0.8em;">
-	        	 <li class="dropdown-header" ><a href="#" class="dropdown-header" style=" font-size: 1.7em; text-align: left;">BOTTOM</a></li>
- 		      	 <li class="divider"></li>	
- 		      	 <li><a href="#">DENIM</a></li>
- 			   	 <li><a href="#">SLACKS</a></li>
-			     <li><a href="#">COTTON</a></li>
-			     <li><a href="#">1/2 PANTS</a></li>
-			</ul>
-        </li>
-        
-        <li><a href="#" class="menu dropdown-toggle" data-toggle="dropdown">SUIT</a></li>
-        
-        <li><a href="#" class="menu dropdown-toggle" data-toggle="dropdown">SHOE&BAG</a>
-        	<ul class="dropdown-menu" style="font-size: 0.8em;">
-	        	 <li class="dropdown-header" ><a href="#" class="dropdown-header" style=" font-size: 1.7em; text-align: left;">SHOE&BAG</a></li>
- 		      	 <li class="divider"></li>	
- 		      	 <li><a href="#">SHOE</a></li>
-			     <li><a href="#">BAG</a></li></ul>
-			     
-        </li>
-        <li><a href="#" class="menu dropdown-toggle" data-toggle="dropdown">ACC</a>
-        	<ul class="dropdown-menu" style="font-size: 0.8em;">
-	        	 <li class="dropdown-header" ><a href="#" class="dropdown-header" style=" font-size: 1.7em; text-align: left;">ACC</a></li>
- 		      	 <li class="divider"></li>	
- 		      	 <li><a href="#">CAP</a></li>
- 			   	 <li><a href="#">BELT</a></li>
-			     <li><a href="#">TIE</a></li>
-			     <li><a href="#">SOCKS</a></li>
-			     <li><a href="#">WATCH</a></li>
-			     <li><a href="#">ETC</a></li>
-			</ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right2">
-        <li><a href="#" onclick="openNav()"><span class="glyphicon glyphicon-user"></span> Login</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-		</c:otherwise>
-</c:choose>
 
 		<div class="contents">
 			<div class="position">
@@ -834,86 +619,53 @@ th {
 					<li>></li>
 					<li>BOARD</li>
 					<li>></li>
-				<li><strong>Q&A</strong></li>
+					<li><strong>REVIEW</strong></li>
 				</ol>
 			</div>
 			<br>
 
-			<h2 class="pageName">Q&A</h2>
+			<h2 class="pageName">REVIEW</h2>
 
 
-			<form name="form1" method="post"  >
-				<div class="notice_viewtable">
-					<table border="3" width="70%" style="margin: auto;">
-						<tr>
-							<td class="inputText col-xs-2" >날짜</td>
-							<td class="inputText col-xs-4">${dto.reg_date}</td>
-							<td class="inputText col-xs-3">조회수</td>
-							<td class="inputText col-xs-3">${dto.readcount}</td>
-						</tr>
-						
+			<form name="form1" method="post" action="${path}/chanrev_servlet/insertReply.do">
+				<div class="write">
+					<table border="2" width="70%" style="margin: auto;">
 						<tr>
 							<td class="inputText">작성자</td>
-							<td colspan="3">${dto.writer }</td>
+							<td><input name="writer" id="writer" class="inputstyle"
+								size="60px"></td>
 						</tr>
-						
 						<tr>
 							<td class="inputText">제목</td>
-							<td colspan="3"> ${dto.subject }</td>
+							<td><input name="subject" id="subject" size="80"
+								class="inputstyle" value="   └>: ${dto.subject }"></td>
 						</tr>
-						
 						<tr>
-							<td class="inputText" >본문</td>
-							<td colspan="3">${dto.content}</td>
+							<td class="inputText">본문</td>
+							<td><textarea rows="15" cols="140" name="content"
+									id="content" class="inputstyle">${dto.content}</textarea></td>
 						</tr>
-						
 						<tr>
 							<td class="inputText">첨부파일</td>
-							<td colspan="3">
-							<c:if test="${dto.filesize > 0}">
-    					    ${dto.filename}( ${dto.filesize} bytes )
-					        <a href="${path}/chanqna_servlet/download.do?num=${dto.num}">
-					        [다운로드]</a>
-					 	     </c:if>
+							<td><input type="file" name="file1" class="inputstyle"></td>
 						</tr>
 						<tr>
 							<td class="inputText">비밀번호</td>
-							<td colspan="3"><input type="password" name="password1" id="password1"
-								class="inputstyle">
-								<c:if test="${param.message =='error' }">
-									<span style="color: red;">비밀번호가 일치하지 않습니다.</span>
-								</c:if>
-							</td>
+							<td><input type="password" name="password1" id="password1"
+								class="inputstyle"></td>
 						</tr>
-						
-						 <tr>
- 						   <td colspan="4" align="center">
-						 	 <input type="hidden" name="num" value="${dto.num}" id="num" >
-						 	 <input type="button" value="수정/삭제" id="btnEdit" class="viewbutton">
-					     	 <input type="button" value="답변" id="btnReply" class="viewbutton">
-					     	 <input type="button" value="목록" id="btnList" class="viewbutton">
-					 	   </td>  
-					 	 </tr>
+
+						<tr>
+							<td colspan="2" align="center">
+							 <input type="hidden" name="num" value="${dto.num}">
+							<input type="button"	value="확인" id="btnSave" class="inputstyle"></td>
+						</tr>
 					</table>
+
+
 				</div>
 				<br>
 			</form>
-			
-			<table border="2" width="70%" style="margin: auto;">
-				<tr>
-					<td><input id="writer" placeholder="이름" size="30;" class="col-xs-2 comment_text"></td>
-				</tr> 
-				
-				<tr><br>
-					<td colspan="2" align="center"><textarea rows="8" cols="150" placeholder="내용을 입력하세요."  id="content" class="col-xs-12 comment_text"></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><button id="btnSave" type="button" class="viewbutton">확인</button></td>
-				</tr>
-			</table>
-			
-			<!-- 댓글 목록을 출력할 영역 -->
-			<div id="commentList" style="margin: auto; width: 70%;"> </div>
 
 
 			<hr style="border: 1px solid white; opacity: 0.5;">

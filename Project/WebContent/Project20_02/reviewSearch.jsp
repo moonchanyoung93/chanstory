@@ -7,8 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://ma
-	xcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap&subset=korean" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -28,59 +27,23 @@
 		document.getElementById("main").style.opacity = "1";
 	}
 	
-	function Logout() {
+	$(function() {
+		$("#btnWrite").click(function() {
+			location.href="${path}/Project20_02/reviewWrite.jsp";
+		});
+	});
+	
+	function list(page) {
+		location.href="${path}/chanrev_servlet/search.do?curPage="+page+"&search_option=${search_option}";
+		
+	}
+	
+	  function Logout() {
 		  location.href="${path}/chansession_servlet/logout.do";
 	}
 	
-	$(function() {
-		comment_list();
-		$("#btnSave").click(function() {
-			comment_add();
-		});
-		$("#btnList").click(function() {
-			location.href="/Project/Project20_02/QNA2.jsp";
-		});
-		$("#btnReply").click(function() {
-			var prom=prompt("관리자만 가능합니다. 비밀번호를 입력해 주세요","비밀번호");
-			if(prom=="321"){
-			document.form1.action="${path}/chanqna_servlet/reply.do";
-			document.form1.submit();
-			}else{
-				alert("비밀번호가 틀렸습니다.");
-			}
-		});
-		$("#btnEdit").click(function() {
-			document.form1.action="${path}/chanqna_servlet/pass_check.do";
-			document.form1.submit();
-		});
-	});
 	
-function comment_add() {
-	var param="board_num=${dto.num}&writer="+$("#writer").val()
-	+"&content="+$("#content").val();
-	$.ajax({
-		type:"post",
-		url: "${path}/chanqna_servlet/comment_add.do",
-		data: param,
-		success: function(){
-			$("#writer").val("");
-			$("#content").val("");
-			comment_list();
-		}
-	});
-}
 	
-function comment_list(){
-	$.ajax({
-		type: "post",
-		url: "${path}/chanqna_servlet/commentList.do",
-		data: "num=${dto.num}",
-		success: function(result){
-			$("#commentList").html(result);
-		}
-	});
-}
-
 	
 </script>
 <style>
@@ -93,7 +56,7 @@ body {
 }
 /* Remove the navbar's default rounded borders and increase the bottom margin */
 .navbar {
-	margin-bottom: 20px; 
+	margin-bottom: 20px;
 	border-radius: 0;
 	font-size: 1.2em;
 }
@@ -101,7 +64,7 @@ body {
 /* Remove the jumbotron's default bottom margin */
 .jumbotron {
 	margin-bottom: 0;
-	background-color: #302b30; 
+	background-color: #302b30;
 }
 
 #myNavbar {
@@ -227,6 +190,12 @@ body {
 	color: #1b181b;
 }
 
+	.btnLogOut:hover{
+	background-color: white;
+	color: #1b181b;
+	}
+
+
 
 
 
@@ -340,6 +309,7 @@ ul {
 	}
 }
 
+
 @media ( min-width : 768px) {
 	.pageName {
 		width: 100%;
@@ -347,31 +317,21 @@ ul {
 	}
 }
 
-.pageName {
+
+
+.pageName{
 	padding-left: 15px;
 	margin-bottom: 50px;
 }
-
-.table {
+.table{
+	text-align: center;
+}
+th{
 	text-align: center;
 }
 
-th {
-	text-align: center;
-}
-
-
-.inputText {
-	text-align: center;
-}
-
-.terms {
-	border: 1px solid;
-	max-height: 170px;
-	overflow: auto;
-	background: #433d43;
-	padding: 30px;
-	width: 80%;
+.finds>select,input,button{
+	background-color: #302b30;
 }
 
 	.mypage_li_a{
@@ -384,26 +344,6 @@ th {
 	background-color: black !important;
 	color: white;
 }
-
-.inputstyle {
-	background-color: #302b30;
-	border-color: silver;
-}
-
-.notice_viewtable{
-	font-size: 15px;
-}
-
-.viewbutton{
-	background-color: #302b30;
-	color: white;
-	font-size: 15px;
-}
-
-.comment_text{
-	color: black;
-}
-
 
 .navbar-right2 {
 	width: 10%;
@@ -497,10 +437,10 @@ th {
 	.dropdown-header{
 		color: white !important;
 	}
+
 </style>
 
 </head>
-<body>
 <body>
 	<!-- Log In -->
 <c:choose>
@@ -827,166 +767,277 @@ th {
 		</c:otherwise>
 </c:choose>
 
+
 		<div class="contents">
 			<div class="position">
 				<ol class="position_ol">
 					<li><a href="../Project20_02/main_login.jsp">HOME</a></li>
 					<li>></li>
-					<li>BOARD</li>
+					<li>BOARD </li>
 					<li>></li>
-				<li><strong>Q&A</strong></li>
+					<li><strong>REVIEW</strong></li>
 				</ol>
+			</div><br>
+			
+			<h2 class="pageName" >REVIEW</h2>
+			<form name="form1" method="post" action="${path}/chanrev_servlet/search.do">
+				<div class="finds">
+					  <select name="search_option" style="width: 250px; font-size: 16pt;	">
+				
+					<c:choose>
+						<c:when test="${search_option =='ALL' }">
+						    <option value="ALL" selected>ALL</option>
+						    <option value="NEW 5%">NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='NEW 5%' }">
+						    <option value="ALL" >ALL</option>
+						    <option value="NEW 5%" selected>NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='BEST 30' }">
+						    <option value="ALL" >ALL</option>
+						    <option value="NEW 5%" >NEW 5%</option>
+						    <option value="BEST 30" selected>BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='OUTER' }">
+						    <option value="ALL" >ALL</option>
+						    <option value="NEW 5%" >NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER" selected>OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='TOP' }">
+						    <option value="ALL" >ALL</option>
+						    <option value="NEW 5%" >NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP" selected>TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='BOTTOM' }">
+						    <option value="ALL">ALL</option>
+						    <option value="NEW 5%" >NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM" selected>BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='SUIT' }">
+						    <option value="ALL" >ALL</option>
+						    <option value="NEW 5%" >NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT"selected>SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='SHOE&BAG' }">
+						    <option value="ALL" >ALL</option>
+						    <option value="NEW 5%" >NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG"selected>SHOE&BAG</option>
+			    			<option value="ACC">ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   				<c:when test="${search_option =='ACC' }">
+						    <option value="ALL" >ALL</option>
+						    <option value="NEW 5%" >NEW 5%</option>
+						    <option value="BEST 30">BEST 30</option>
+			    			<option value="OUTER">OUTER</option>
+			    			<option value="TOP">TOP</option>
+			    			<option value="BOTTOM">BOTTOM</option>
+			    			<option value="SUIT">SUIT</option>
+			    			<option value="SHOE&BAG">SHOE&BAG</option>
+			    			<option value="ACC" selected>ACC</option>
+ 		   				</c:when>
+ 		   				
+ 		   			</c:choose>
+			  </select>
+				<button id="btnSearch" style="font-size: 11pt; padding: 9px;"><span class="glyphicon glyphicon-search">찾기</span> </button>
+  				</div>
+			</form><br>
+			<div class="table1">
+				<table class="table table-condensed table-bordered" border="2">
+					<thead>
+						<tr>
+							<td class="col-xs-1">번호</td>
+							<td class="col-xs-6">제목</td>
+							<td class="col-xs-2">작성자</td>
+							<td class="col-xs-2">작성일</td>
+							<td class="col-xs-1">조회수</td>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="dto" items="${listrev}">
+							<c:choose>
+								<c:when test="${dto.show =='y' }">
+									<tr>
+										<th>${dto.num }</th>
+										<th>
+											<c:forEach var="i" begin="1" end="${dto.re_level}">
+												 &nbsp;&nbsp;
+											</c:forEach>
+											<a href="${path}/chanrev_servlet/view.do?num=${dto.num }" style="color: white;  ">${dto.subject }</a>
+											<!-- 댓글갯수 표시-->
+											<c:if test="${dto.comment_count>0}">
+												<span style="color: aqua;">(${dto.comment_count })</span>
+											</c:if>
+										</th>
+										<th>${dto.writer }</th>
+										<th>${dto.reg_date}</th>
+										<th>${dto.readcount}</th>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<th>${dto.num }</th>
+										<th colspan="4" align="center">삭제된 게시물입니다.</th>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+			<a class="btn btn-default" style="float: right; color: white; background-color: #302b30; " id="btnWrite">글쓰기</a>
+			<div class="text-center">
+				<ul class="pagination">
+					<li><c:if test="${page.curBlock>1}"> <a href="#" onclick="list('1')">처음으로</a></c:if></li>
+					<li><c:if test="${page.curBlock>1}"><a href="#" onclick="list('${page.prevPage}')">이전</a></c:if></li>
+					<li>
+						<c:forEach var="num" begin="${page.blockStart}" end="${page.blockEnd }">
+							<c:choose>
+								<c:when test="${num==page.curPage }">
+									<!-- 현재 선택된 숫자  -->
+									<span style="color: red;">${num}</span>
+								</c:when>
+								<c:otherwise>
+									<a href="#" onclick="list('${num}')">${num }</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach></li>
+					<li><c:if test="${page.curBlock<page.totBlock}"><a href="#" onclick="list('${page.nextPage}')">다음</a></c:if></li>
+					<li><c:if test="${page.curBlock<page.totBlock}"><a href="#" onclick="list('${page.totPage}')">끝</a></c:if></li>
+				</ul>
+			</div>
+			
+			
+		
+		</div><br>
+
+
+		<hr style="border: 1px solid white; opacity: 0.5;">
+
+
+		<footer class="container-fluid text-center">
+			<div class="footer_div">
+				<div class="footer_div1">
+					<a href="../Project20_02/main_login.jsp"><img src="../Project20_02/images/logo.png"></a>
+					<p style="font-size: 40px;">
+						<strong>010-5777-8339</strong><a href="tel:010-5777-8339"
+							id="img_a"><span class="glyphicon glyphicon-earphone"
+							id="img_g"> </span></a>
+					</p>
+					<span style="font-size: 13px;"> 문자 메세지 수신불가 / 콜센터,문의게시판 이용<br>10:00
+						AM ~ 6:00 PM (Lunch time 12:00 PM ~ 1:00 PM)<br>토,일요일 및 공휴일
+						휴무
+					</span>
+				</div>
+
+				<div class="footer_div1">
+					<span style="font-size: 14px;"><strong
+						style="font-size: 19px;">Account Info</strong><br>신한
+						110-361-802900<br>예금주 : 문찬영(찬'스토리)</span>
+				</div>
+
+				<div class="footer_div1">
+					<span style="font-size: 14px;"><strong
+						style="font-size: 19px;">My Account</strong><br> <a href="#"
+						class="footer_div_a">마이페이지</a><br> <a href="#"
+						class="footer_div_a">주문내역</a><br> <a href="#"
+						class="footer_div_a">회원등급 및 혜택</a><br> </span>
+				</div>
+
+				<div class="footer_div1">
+					<span style="font-size: 14px;"><strong
+						style="font-size: 19px;">Shipping & Returns</strong><br> <a
+						href="#" class="footer_div_a">문의게시판</a><br> <a href="#"
+						class="footer_div_a">교환반품안내</a><br> <a href="#"
+						class="footer_div_a">우체국택배 반품접수</a><br> </span>
+				</div>
 			</div>
 			<br>
 
-			<h2 class="pageName">Q&A</h2>
-
-
-			<form name="form1" method="post"  >
-				<div class="notice_viewtable">
-					<table border="3" width="70%" style="margin: auto;">
-						<tr>
-							<td class="inputText col-xs-2" >날짜</td>
-							<td class="inputText col-xs-4">${dto.reg_date}</td>
-							<td class="inputText col-xs-3">조회수</td>
-							<td class="inputText col-xs-3">${dto.readcount}</td>
-						</tr>
-						
-						<tr>
-							<td class="inputText">작성자</td>
-							<td colspan="3">${dto.writer }</td>
-						</tr>
-						
-						<tr>
-							<td class="inputText">제목</td>
-							<td colspan="3"> ${dto.subject }</td>
-						</tr>
-						
-						<tr>
-							<td class="inputText" >본문</td>
-							<td colspan="3">${dto.content}</td>
-						</tr>
-						
-						<tr>
-							<td class="inputText">첨부파일</td>
-							<td colspan="3">
-							<c:if test="${dto.filesize > 0}">
-    					    ${dto.filename}( ${dto.filesize} bytes )
-					        <a href="${path}/chanqna_servlet/download.do?num=${dto.num}">
-					        [다운로드]</a>
-					 	     </c:if>
-						</tr>
-						<tr>
-							<td class="inputText">비밀번호</td>
-							<td colspan="3"><input type="password" name="password1" id="password1"
-								class="inputstyle">
-								<c:if test="${param.message =='error' }">
-									<span style="color: red;">비밀번호가 일치하지 않습니다.</span>
-								</c:if>
-							</td>
-						</tr>
-						
-						 <tr>
- 						   <td colspan="4" align="center">
-						 	 <input type="hidden" name="num" value="${dto.num}" id="num" >
-						 	 <input type="button" value="수정/삭제" id="btnEdit" class="viewbutton">
-					     	 <input type="button" value="답변" id="btnReply" class="viewbutton">
-					     	 <input type="button" value="목록" id="btnList" class="viewbutton">
-					 	   </td>  
-					 	 </tr>
-					</table>
-				</div>
-				<br>
-			</form>
-			
-			<table border="2" width="70%" style="margin: auto;">
-				<tr>
-					<td><input id="writer" placeholder="이름" size="30;" class="col-xs-2 comment_text"></td>
-				</tr> 
-				
-				<tr><br>
-					<td colspan="2" align="center"><textarea rows="8" cols="150" placeholder="내용을 입력하세요."  id="content" class="col-xs-12 comment_text"></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><button id="btnSave" type="button" class="viewbutton">확인</button></td>
-				</tr>
-			</table>
-			
-			<!-- 댓글 목록을 출력할 영역 -->
-			<div id="commentList" style="margin: auto; width: 70%;"> </div>
-
-
-			<hr style="border: 1px solid white; opacity: 0.5;">
-
-
-			<footer class="container-fluid text-center">
-				<div class="footer_div">
-					<div class="footer_div1">
-						<a href="../Project20_02/main_login.jsp"><img src="../Project20_02/images/logo.png"></a>
-						<p style="font-size: 40px;">
-							<strong>010-5777-8339</strong><a href="tel:010-5777-8339"
-								id="img_a"><span class="glyphicon glyphicon-earphone"
-								id="img_g"> </span></a>
-						</p>
-						<span style="font-size: 13px;"> 문자 메세지 수신불가 / 콜센터,문의게시판 이용<br>10:00
-							AM ~ 6:00 PM (Lunch time 12:00 PM ~ 1:00 PM)<br>토,일요일 및 공휴일
-							휴무
-						</span>
-					</div>
-
-					<div class="footer_div1">
-						<span style="font-size: 14px;"><strong
-							style="font-size: 19px;">Account Info</strong><br>신한
-							110-361-802900<br>예금주 : 문찬영(찬'스토리)</span>
-					</div>
-
-					<div class="footer_div1">
-						<span style="font-size: 14px;"><strong
-							style="font-size: 19px;">My Account</strong><br> <a href="#"
-							class="footer_div_a">마이페이지</a><br> <a href="#"
-							class="footer_div_a">주문내역</a><br> <a href="#"
-							class="footer_div_a">회원등급 및 혜택</a><br> </span>
-					</div>
-
-					<div class="footer_div1">
-						<span style="font-size: 14px;"><strong
-							style="font-size: 19px;">Shipping & Returns</strong><br> <a
-							href="#" class="footer_div_a">문의게시판</a><br> <a href="#"
-							class="footer_div_a">교환반품안내</a><br> <a href="#"
-							class="footer_div_a">우체국택배 반품접수</a><br> </span>
-					</div>
-				</div>
-				<br>
-
-				<hr style="border: 1px solid white; opacity: 0.1;">
-				<div>
-					<a href="http://www.instagram.com"><img
-						src="../Project20_02/images/instagram.png" width="50"></a> <a
-						href="http://www.facebook.com"><img src="../Project20_02/images/facebook2.png"
-						width="50"></a>
-				</div>
-				<hr style="border: 1px solid white; opacity: 0.1;">
+			<hr style="border: 1px solid white; opacity: 0.1;">
+			<div>
+				<a href="http://www.instagram.com"><img
+					src="../Project20_02/images/instagram.png" width="50"></a> <a
+					href="http://www.facebook.com"><img src="../Project20_02/images/facebook2.png"
+					width="50"></a>
+			</div>
+			<hr style="border: 1px solid white; opacity: 0.1;">
 
 
 
-				<div class="footer_end">
-					<span><strong>상호</strong> (주)찬스토리 대표 문찬영<br> <strong>경기도
-							안신시 상록구 화랑로</strong> 534 (안산파크푸르지오) 103동 2803호 <br> <strong>사업자등록번호</strong>
-						142-81-77568<br> <strong>통신판매업신고번호</strong> 제2020-안산상록-0072호<br>
-						<strong>개인정보담당자</strong> 문찬영 <a href="mailto:khm932001@naver.com"
-						style="text-decoration: none; color: white;"><span
-							class="glyphicon glyphicon-envelope"> </span> khm932001@naver.com</a><br>
-						<strong>반품주소: </strong> 경기도 안신시 상록구 화랑로 534 (안산파크푸르지오) 103동 2803호
-						<br> <strong>입금계좌: </strong> 신한은행 110-361-802900 문찬영</span>
-				</div>
-				<hr style="border: 1px solid white; opacity: 0.1;">
+			<div class="footer_end">
+				<span><strong>상호</strong> (주)찬스토리 대표 문찬영<br> <strong>경기도
+						안신시 상록구 화랑로</strong> 534 (안산파크푸르지오) 103동 2803호 <br> <strong>사업자등록번호</strong>
+					142-81-77568<br> <strong>통신판매업신고번호</strong> 제2020-안산상록-0072호<br>
+					<strong>개인정보담당자</strong> 문찬영 <a href="mailto:khm932001@naver.com"
+					style="text-decoration: none; color: white;"><span
+						class="glyphicon glyphicon-envelope"> </span> khm932001@naver.com</a><br>
+					<strong>반품주소: </strong> 경기도 안신시 상록구 화랑로 534 (안산파크푸르지오) 103동 2803호 <br>
+					<strong>입금계좌: </strong> 신한은행 110-361-802900 문찬영</span>
+			</div>
+			<hr style="border: 1px solid white; opacity: 0.1;">
 
 
-				<div class="copyright">
-					<p>Copyright &copy; All rights reserved.</p>
-				</div>
-			</footer>
-</div>
-		</div>
+			<div class="copyright">
+				<p>Copyright &copy; All rights reserved.</p>
+			</div>
+
+		</footer>
+	</div>
 </body>
 </html>

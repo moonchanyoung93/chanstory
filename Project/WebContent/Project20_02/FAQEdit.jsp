@@ -13,8 +13,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/chansession_check.jsp"%>
@@ -57,21 +55,19 @@
 	
 </script>
 <style>
-body {
+ body {
 	background-color: #302b30;
 	font-family: 'Gaegu', cursive;
 	width: 88%;
 	margin: auto;
 	color: white;
 }
-/* Remove the navbar's default rounded borders and increase the bottom margin */
 .navbar {
 	margin-bottom: 20px; 
 	border-radius: 0;
 	font-size: 1.2em;
 }
 
-/* Remove the jumbotron's default bottom margin */
 .jumbotron {
 	margin-bottom: 0;
 	background-color: #302b30;
@@ -99,7 +95,6 @@ body {
 .navbar-right {
 	width: 3.5%;
 	font-size: 0.7em;
-	/*margin-right: 0 !important;*/
 }
 
 .panel-heading {
@@ -108,6 +103,7 @@ body {
 	background-color: #101010 !important;
 	border-color: #101010 !important;
 }
+
 
 .panel-body>a>img {
 	height: 250px;
@@ -134,7 +130,6 @@ body {
 	}
 }
 
-/* Login */
 .sidenav {
 	height: 100%;
 	width: 0;
@@ -421,6 +416,7 @@ th {
 	width: 100%;
 	font-weight: bold;
 	}
+ */
 	
 	.btnFind_id{
 	height: 36px;
@@ -455,7 +451,19 @@ th {
 	background-color: white;
 	color: #1b181b;
 	}
-
+		.dropdown-menu{
+	background-color: #1b181b;
+	}
+	.dropdown-menu>li>a{
+		color: white !important;
+	}
+	.dropdown-menu>li>a:hover{
+		color: black !important;
+		font-size: 1.25em;
+	}
+	.dropdown-header{
+		color: white !important;
+	}
 </style>
 
 </head>

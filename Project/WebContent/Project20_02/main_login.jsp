@@ -13,8 +13,6 @@
 	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/chansession_check.jsp"%>
 <script src="../include/jquery-3.4.1.min.js"></script>
@@ -317,6 +315,23 @@ footer {
 	background-color: black !important;
 	color: white;
 }
+
+.dropdown-menu {
+	background-color: #1b181b;
+}
+
+.dropdown-menu>li>a {
+	color: white !important;
+}
+
+.dropdown-menu>li>a:hover {
+	color: black !important;
+	font-size: 1.25em;
+}
+
+.dropdown-header {
+	color: white !important;
+}
 </style>
 </head>
 <body>
@@ -554,11 +569,7 @@ footer {
 				class="sr-only">Next</span>
 			</a>
 		</div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+		<br> <br> <br> <br> <br>
 
 
 

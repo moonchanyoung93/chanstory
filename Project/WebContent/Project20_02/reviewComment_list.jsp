@@ -13,7 +13,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
-	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 다음 주소 -->
 <%@ include file="../include/header.jsp"%>
 <script src="../include/jquery-3.4.1.min.js"></script>
 <style type="text/css">
@@ -433,7 +433,7 @@ th {
 	
 	
 <table border="2" width="700px">
-<c:forEach var="row" items="${listqna}">
+<c:forEach var="row" items="${listrev}">
 	<tr>
 		<td>
 			${row.writer}

@@ -1,4 +1,4 @@
-package chanBoard;
+package chanREV;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,18 +18,18 @@ import javax.servlet.http.HttpSession;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import chanREV.RevDTO;
+import chanFAQ.FaqDTO;
 import common.Constants;
 import page.Pager;
 
-@WebServlet("/chanboard_servlet/*")
-public class BoardController extends HttpServlet {
+@WebServlet("/chanrev_servlet/*")
+public class RevController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String url=request.getRequestURL().toString();
 		String contextPath=request.getContextPath();
-		BoardDAO dao=new BoardDAO();
+		RevDAO dao=new RevDAO();
 		if(url.indexOf("list.do")!=-1) {
 			//레코드 갯수 계산
 			int count = dao.count();
@@ -42,36 +42,13 @@ public class BoardController extends HttpServlet {
 			int start=pager.getPageBegin();
 			int end=pager.getPageEnd();
 			
-			System.out.println("list.do 호출");
-			List<BoardDTO> list=dao.list(start, end);
-			request.setAttribute("list", list);
+			List<RevDTO> list=dao.list(start, end);
+			request.setAttribute("listrev", list);
 			request.setAttribute("page", pager);
 			
-			String page="/Project20_02/notice.jsp";
+			String page="/Project20_02/review.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
-		}else if(url.indexOf("search.do") != -1) {
-			String search_option=request.getParameter("search_option");
-			String keyword=request.getParameter("keyword");
-			int count=dao.searchCount(search_option);
-			
-			int curPage=1;
-			if(request.getParameter("curPage")!=null) {
-				curPage=Integer.parseInt(request.getParameter("curPage"));
-			}
-			Pager pager=new Pager(count, curPage);
-			int start=pager.getPageBegin();
-			int end=pager.getPageEnd();
-			
-			List<BoardDTO> list=dao.searchList(search_option,keyword,start,end);
-			request.setAttribute("list", list);
-			request.setAttribute("search_option", search_option);
-			request.setAttribute("keyword", keyword);
-			request.setAttribute("page", pager);
-			String page="/Project20_02/noticeSearch.jsp";
-			RequestDispatcher rd=request.getRequestDispatcher(page);
-			rd.forward(request, response);
-			
 		}else if(url.indexOf("insert.do") != -1) {
 			File uploadDir=new File(Constants.UPLOAD_PATH);
 			if(!uploadDir.exists()) {
@@ -100,7 +77,7 @@ public class BoardController extends HttpServlet {
 				e.printStackTrace();
 				System.out.println(e);
 			}
-			BoardDTO dto=new BoardDTO();
+			RevDTO dto=new RevDTO();
 			dto.setWriter(writer);
 			dto.setSubject(subject);
 			dto.setContent(content);
@@ -114,16 +91,43 @@ public class BoardController extends HttpServlet {
 			dto.setFilesize(filesize);
 			
 			dao.insert(dto);
-			String page="/chanboard_servlet/list.do";
+			String page="/chanrev_servlet/list.do";
 			response.sendRedirect(contextPath+page);
+		}else if(url.indexOf("search.do") != -1) {
+			String search_option=request.getParameter("search_option");
+			int count=dao.searchCount(search_option);
+			
+			int curPage=1;
+			if(request.getParameter("curPage")!=null) {
+				curPage=Integer.parseInt(request.getParameter("curPage"));
+			}
+			Pager pager=new Pager(count, curPage);
+			int start=pager.getPageBegin();
+			int end=pager.getPageEnd();
+			
+			List<RevDTO> list=dao.searchList(search_option,start,end);
+			request.setAttribute("listrev", list);
+			request.setAttribute("search_option", search_option);
+			request.setAttribute("page", pager);
+			String page="/Project20_02/reviewSearch.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
 		}else if(url.indexOf("view.do") != -1) {
 			int num=Integer.parseInt(request.getParameter("num"));
 			HttpSession session=request.getSession();
 			//조회수 증가
 			dao.plusReadCount(num, session);
-			BoardDTO dto=dao.viewReplace(num);
+			RevDTO dto=dao.viewReplace(num);
 			request.setAttribute("dto", dto);
-			String page="/Project20_02/noticeView.jsp";
+			String page="/Project20_02/reviewView.jsp";
+			RequestDispatcher rd=request.getRequestDispatcher(page);
+			rd.forward(request, response);
+		}else if(url.indexOf("reply.do") != -1) {
+			int num=Integer.parseInt(request.getParameter("num"));
+			RevDTO dto=dao.view(num);
+			dto.setContent("===게시물의 내용===\n"+dto.getContent());
+			request.setAttribute("dto", dto);
+			String page="/Project20_02/reviewReply.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
 		}else if(url.indexOf("pass_check.do") != -1) {
@@ -132,17 +136,17 @@ public class BoardController extends HttpServlet {
 			String result=dao.passwordCheck(num, password);
 			String page="";
 			if(result !=null) {
-				page="/Project20_02/noticeEdit.jsp";
+				page="/Project20_02/reviewEdit.jsp";
 				request.setAttribute("dto", dao.view(num));
 				RequestDispatcher rd=request.getRequestDispatcher(page);
 				rd.forward(request, response);
 			}else {
-				page=contextPath+"/chanboard_servlet/view.do?num="+num+"&message=error";
+				page=contextPath+"/chanrev_servlet/view.do?num="+num+"&message=error";
 				response.sendRedirect(page);
 			}
 			
 		}else if(url.indexOf("comment_add.do") != -1) {
-			BoardCommentDTO dto=new BoardCommentDTO();
+			RevCommentDTO dto=new RevCommentDTO();
 			//게시물 번호
 			int board_num=Integer.parseInt(request.getParameter("board_num"));
 			String writer=request.getParameter("writer");
@@ -156,12 +160,38 @@ public class BoardController extends HttpServlet {
 			int num=Integer.parseInt(request.getParameter("num"));
 			System.out.println("댓글을 위한 게시물번호:"+num);
 			//댓글 목록 리턴
-			List<BoardCommentDTO> list=dao.commentList(num);
-			request.setAttribute("list", list);
+			List<RevCommentDTO> list=dao.commentList(num);
+			request.setAttribute("listrev", list);
 			//출력 페이지 이동
-			String page="/Project20_02/noticeComment_list.jsp";
+			String page="/Project20_02/reviewComment_list.jsp";
 			RequestDispatcher rd=request.getRequestDispatcher(page);
 			rd.forward(request, response);
+		}else if(url.indexOf("insertReply.do") != -1) {
+			int num=Integer.parseInt(request.getParameter("num"));
+			RevDTO dto=dao.view(num);
+			int ref=dto.getRef();
+			int re_step=dto.getRe_step()+1;
+			int re_level=dto.getRe_level()+1;
+			String writer=request.getParameter("writer");
+			String subject=request.getParameter("subject");
+			String content=request.getParameter("content");
+			String password=request.getParameter("password1");
+			dto.setWriter(writer);
+			dto.setSubject(subject);
+			dto.setContent(content);
+			dto.setPassword(password);
+			dto.setRef(ref);
+			dto.setRe_level(re_level);
+			dto.setRe_step(re_step);
+			dto.setFilename("-");
+			dto.setFilesize(0);
+			dto.setDown(0);
+			//답글 순서 조정
+			dao.updateStep(ref, re_step);
+			dao.reply(dto);
+			//목록 이동
+			String page="/chanrev_servlet/list.do";
+			response.sendRedirect(contextPath+page);
 		}else if(url.indexOf("update.do") != -1) {
 			File uploadDir=new File(Constants.UPLOAD_PATH);
 			if(!uploadDir.exists()) {
@@ -172,7 +202,7 @@ public class BoardController extends HttpServlet {
 			String writer=multi.getParameter("writer");
 			String subject= multi.getParameter("subject");
 			String content=multi.getParameter("content");
-			String password=multi.getParameter("password");
+			String password=multi.getParameter("password1");
 			String ip=request.getRemoteAddr();
 			String filename="";
 			int filesize=0;
@@ -186,12 +216,11 @@ public class BoardController extends HttpServlet {
 						filesize=(int)f1.length();
 					}
 				}
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-			BoardDTO dto=new BoardDTO();
+			RevDTO dto=new RevDTO();
 			dto.setNum(num);
 			dto.setWriter(writer);
 			dto.setSubject(subject);
@@ -200,7 +229,7 @@ public class BoardController extends HttpServlet {
 			dto.setIp(ip);
 			
 			if(filename ==null || filename.trim().equals("")) {
-				BoardDTO dto2=dao.view(num);
+				RevDTO dto2=dao.view(num);
 				String fName=dto2.getFilename();
 				int fSize=dto2.getFilesize();
 				int fDown=dto2.getDown();
@@ -223,7 +252,7 @@ public class BoardController extends HttpServlet {
 				dto.setDown(0);
 			}
 			dao.update(dto);
-			String page="/chanboard_servlet/list.do";
+			String page="/chanrev_servlet/list.do";
 			response.sendRedirect(contextPath+page);
 		}else if(url.indexOf("delete.do") != -1) {
 			MultipartRequest multi=new MultipartRequest(request, Constants.UPLOAD_PATH, Constants.MAX_UPLOAD, "utf-8", new DefaultFileRenamePolicy());
@@ -232,43 +261,9 @@ public class BoardController extends HttpServlet {
 			int num=Integer.parseInt(multi.getParameter("num"));
 			dao.delete(num);
 			
-			String page="/chanboard_servlet/list.do";
+			String page="/chanrev_servlet/list.do";
 			response.sendRedirect(contextPath+page);
 
-		}else if(url.indexOf("reply.do") != -1) {
-			int num=Integer.parseInt(request.getParameter("num"));
-			BoardDTO dto=dao.view(num);
-			dto.setContent("===게시물의 내용===\n"+dto.getContent());
-			request.setAttribute("dto", dto);
-			String page="/Project20_02/noticeReply.jsp";
-			RequestDispatcher rd=request.getRequestDispatcher(page);
-			rd.forward(request, response);
-		}else if(url.indexOf("insertReply.do") != -1) {
-			int num=Integer.parseInt(request.getParameter("num"));
-			BoardDTO dto=dao.view(num);
-			int ref=dto.getRef();
-			int re_step=dto.getRe_step()+1;
-			int re_level=dto.getRe_level()+1;
-			String writer=request.getParameter("writer");
-			String subject=request.getParameter("subject");
-			String content=request.getParameter("content");
-			String password=request.getParameter("password1");
-			dto.setWriter(writer);
-			dto.setSubject(subject);
-			dto.setContent(content);
-			dto.setPassword(password);
-			dto.setRef(ref);
-			dto.setRe_level(re_level);
-			dto.setRe_step(re_step);
-			dto.setFilename("-");
-			dto.setFilesize(0);
-			dto.setDown(0);
-			//답글 순서 조정
-			dao.updateStep(ref, re_step);
-			dao.reply(dto);
-			//목록 이동
-			String page="/chanboard_servlet/list.do";
-			response.sendRedirect(contextPath+page);
 		}else if(url.indexOf("download.do") != -1) {
 			int num=Integer.parseInt(request.getParameter("num"));
 			String filename=dao.getFileName(num);
@@ -297,6 +292,8 @@ public class BoardController extends HttpServlet {
 			dao.plusDown(num);
 			
 		}
+		
+		
 		
 		
 		

@@ -38,19 +38,14 @@
 			comment_add();
 		});
 		$("#btnList").click(function() {
-			location.href="/Project/Project20_02/QNA2.jsp";
+			location.href="/Project/Project20_02/review2.jsp";
 		});
 		$("#btnReply").click(function() {
-			var prom=prompt("관리자만 가능합니다. 비밀번호를 입력해 주세요","비밀번호");
-			if(prom=="321"){
-			document.form1.action="${path}/chanqna_servlet/reply.do";
+			document.form1.action="${path}/chanrev_servlet/reply.do";
 			document.form1.submit();
-			}else{
-				alert("비밀번호가 틀렸습니다.");
-			}
 		});
 		$("#btnEdit").click(function() {
-			document.form1.action="${path}/chanqna_servlet/pass_check.do";
+			document.form1.action="${path}/chanrev_servlet/pass_check.do";
 			document.form1.submit();
 		});
 	});
@@ -60,7 +55,7 @@ function comment_add() {
 	+"&content="+$("#content").val();
 	$.ajax({
 		type:"post",
-		url: "${path}/chanqna_servlet/comment_add.do",
+		url: "${path}/chanrev_servlet/comment_add.do",
 		data: param,
 		success: function(){
 			$("#writer").val("");
@@ -73,7 +68,7 @@ function comment_add() {
 function comment_list(){
 	$.ajax({
 		type: "post",
-		url: "${path}/chanqna_servlet/commentList.do",
+		url: "${path}/chanrev_servlet/commentList.do",
 		data: "num=${dto.num}",
 		success: function(result){
 			$("#commentList").html(result);
@@ -101,7 +96,7 @@ body {
 /* Remove the jumbotron's default bottom margin */
 .jumbotron {
 	margin-bottom: 0;
-	background-color: #302b30; 
+	background-color: #302b30;
 }
 
 #myNavbar {
@@ -226,7 +221,6 @@ body {
 	background-color: white;
 	color: #1b181b;
 }
-
 
 
 
@@ -500,7 +494,6 @@ th {
 </style>
 
 </head>
-<body>
 <body>
 	<!-- Log In -->
 <c:choose>
@@ -834,12 +827,12 @@ th {
 					<li>></li>
 					<li>BOARD</li>
 					<li>></li>
-				<li><strong>Q&A</strong></li>
+					<li><strong>REVIEW</strong></li>
 				</ol>
 			</div>
 			<br>
 
-			<h2 class="pageName">Q&A</h2>
+			<h2 class="pageName">REVIEW</h2>
 
 
 			<form name="form1" method="post"  >
@@ -872,7 +865,7 @@ th {
 							<td colspan="3">
 							<c:if test="${dto.filesize > 0}">
     					    ${dto.filename}( ${dto.filesize} bytes )
-					        <a href="${path}/chanqna_servlet/download.do?num=${dto.num}">
+					        <a href="${path}/chanrev_servlet/download.do?num=${dto.num}">
 					        [다운로드]</a>
 					 	     </c:if>
 						</tr>

@@ -23,5 +23,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	  <mapper resource="/chanBoard/mapper/board.xml" />
 	  <mapper resource="/chanFAQ/mapper/FAQ.xml" />
 	  <mapper resource="/chanQNA/mapper/QNA.xml" />
+	  <mapper resource="/chanREV/mapper/REV.xml" />
 	</mappers>
 </configuration>

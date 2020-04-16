@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
  <link href="https://fonts.googleapis.com/css?family=Gaegu:400,700&display=swap&subset=korean" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <%@ include file="../include/header.jsp" %>
   <script src="../include/jquery-3.4.1.min.js"></script>
   <script type="text/javascript">
@@ -76,6 +75,7 @@ body {
 .menu {
 	width: 135px;
 	text-align: center;
+	
 }
 
 .navbar-nav {
@@ -396,6 +396,23 @@ body {
 	background-color: white;
 	color: #1b181b;
 	}
+	.btnFind_password:hover {
+	background-color: white;
+	color: #1b181b;
+	}
+		.dropdown-menu{
+	background-color: #1b181b;
+	}
+	.dropdown-menu>li>a{
+		color: white !important;
+	}
+	.dropdown-menu>li>a:hover{
+		color: black !important;
+		font-size: 1.25em;
+	}
+	.dropdown-header{
+		color: white !important;
+	}
 
 </style>
 </head>
@@ -503,9 +520,7 @@ body {
 						<li><a href="#" class="menu dropdown-toggle"
 							data-toggle="dropdown">OUTER</a>
 							<ul class="dropdown-menu" style="font-size: 0.8em;">
-								<li class="dropdown-header"><a href="#"
-									class="dropdown-header"
-									style="font-size: 1.7em; text-align: left;">OUTER</a></li>
+								<li class="dropdown-header"><a href="#" class="dropdown-header" style="font-size: 1.7em; text-align: left;">OUTER</a></li>
 								<li class="divider"></li>
 								<li><a href="#">COAT</a></li>
 								<li><a href="#">JACKET</a></li>

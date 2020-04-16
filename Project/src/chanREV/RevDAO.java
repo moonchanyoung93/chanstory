@@ -1,4 +1,4 @@
-package chanBoard;
+package chanREV;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,19 +8,31 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 
+import chanFAQ.FaqCommentDTO;
+import chanFAQ.FaqDTO;
 import sqlmap.MybatisManager;
 
-public class BoardDAO {
-	//게시물 목록
-	public List<BoardDTO> list(int start, int end){
-		List<BoardDTO> list=null;
+public class RevDAO {
+
+	public int count() {
+		int result=0;
+		try(SqlSession session=MybatisManager.getInstance().openSession()){
+			result=session.selectOne("chanrev.count_rev");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public List<RevDTO> list(int start, int end) {
+		List<RevDTO> list=null;
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
 			Map<String, Object> map=new HashMap<>();
 			map.put("start", start);
 			map.put("end", end);
-			list=session.selectList("list", map);
+			list=session.selectList("listrev", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -29,46 +41,34 @@ public class BoardDAO {
 		return list;
 	}
 
-	public int count() {
-		int result=0;
-		try(SqlSession session=MybatisManager.getInstance().openSession()){
-			result=session.selectOne("chanboard.count");
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	public List<BoardDTO> searchList(String search_option, String keyword, int start, int end) {
-		List<BoardDTO> list=null;
-		try(SqlSession session
-				=MybatisManager.getInstance().openSession()) {
-			Map<String, Object> map=new HashMap<>();
-			map.put("search_option", search_option);
-			map.put("keyword", "%"+keyword+"%");
-			list=session.selectList("chanboard.searchList", map);
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
-	}
-
-	//게시물 저장
-	public void insert(BoardDTO dto) {
+	public void insert(RevDTO dto) {
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			session.insert("chanboard.insert", dto);
+			session.insert("chanrev.insert_rev", dto);
 			session.commit();
 		}catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if(session != null) session.close();
 		}
+		
+	}
 
-	}//end insert
+	public List<RevDTO> searchList(String search_option, int start, int end) {
+		List<RevDTO> list=null;
+		try(SqlSession session=MybatisManager.getInstance().openSession()) {
+			Map<String, Object> map=new HashMap<>();
+			map.put("start",start);
+			map.put("end",end);
+			map.put("search_option","%"+search_option+"%");
+			list=session.selectList("chanrev.searchList_rev", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
-	//조회수 증가 처리
 	public void plusReadCount(int num, HttpSession count_session) {
 		SqlSession session=null;
 		try {
@@ -79,7 +79,7 @@ public class BoardDAO {
 			long current_time=System.currentTimeMillis();
 			session=MybatisManager.getInstance().openSession();
 			if(current_time-read_time>5*1000) {
-				session.update("chanboard.plusReadCount",num);
+				session.update("chanrev.plusReadCount_rev",num);
 				session.commit();
 				count_session.setAttribute("read_time_"+num, current_time);
 			}
@@ -88,15 +88,15 @@ public class BoardDAO {
 		} finally {
 			if(session != null) session.close();
 		}
-
+		
 	}
 
-	public BoardDTO viewReplace(int num) {
-		BoardDTO dto=null;
+	public RevDTO viewReplace(int num) {
+		RevDTO dto=null;
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			dto=session.selectOne("chanboard.view", num);
+			dto=session.selectOne("chanrev.view_rev", num);
 			//줄바꾸기
 			String content=dto.getContent();
 			content=content.replace("\n", "<br>");
@@ -104,6 +104,20 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			if(session != null) session.close();
+		}
+		return dto;
+	}
+
+	public RevDTO view(int num) {
+		RevDTO dto=null;
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			dto=session.selectOne("chanrev.view_rev", num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
 			if(session != null) session.close();
 		}
 		return dto;
@@ -117,7 +131,7 @@ public class BoardDAO {
 			Map<String, Object> map=new HashMap<>();
 			map.put("num", num);
 			map.put("password", password);
-			result=session.selectOne("chanboard.pass_check",map);
+			result=session.selectOne("chanrev.pass_check_rev",map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -126,41 +140,26 @@ public class BoardDAO {
 		return result;
 	}
 
-	public BoardDTO view(int num) {
-		BoardDTO dto=null;
+	public void commentAdd(RevCommentDTO dto) {
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			dto=session.selectOne("chanboard.view", num);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			if(session != null) session.close();
-		}
-		return dto;
-	}
-
-	public void commentAdd(BoardCommentDTO dto) {
-		SqlSession session=null;
-		try {
-			session=MybatisManager.getInstance().openSession();
-			session.insert("chanboard.commentAdd", dto);
+			session.insert("chanrev.commentAdd_rev", dto);
 			session.commit();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if(session != null) session.close();
 		}
-
+		
 	}
 
-	public List<BoardCommentDTO> commentList(int num) {
-		List<BoardCommentDTO> list=null;
+	public List<RevCommentDTO> commentList(int num) {
+		List<RevCommentDTO> list=null;
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			list=session.selectList("chanboard.commentList",num);
+			list=session.selectList("chanrev.commentList_rev",num);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -169,12 +168,42 @@ public class BoardDAO {
 		return list;
 	}
 
+	public void updateStep(int ref, int re_step) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			RevDTO dto=new RevDTO();
+			dto.setRef(ref);
+			dto.setRe_step(re_step);
+			session.update("chanrev.updateStep_rev",dto);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if(session != null) session.close();
+		}
+		
+	}
+
+	public void reply(RevDTO dto) {
+		SqlSession session=null;
+		try {
+			session=MybatisManager.getInstance().openSession();
+			session.insert("chanrev.reply_rev", dto);
+			session.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(session != null) session.close();
+		}
+	}
+
 	public String getFileName(int num) {
 		String result="";
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			result=session.selectOne("chanboard.getFileName", num);
+			result=session.selectOne("chanrev.getFileName_rev", num);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -183,11 +212,11 @@ public class BoardDAO {
 		return result;
 	}
 
-	public void update(BoardDTO dto) {
+	public void update(RevDTO dto) {
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			session.update("chanboard.update", dto);
+			session.update("chanrev.update_rev", dto);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -201,60 +230,27 @@ public class BoardDAO {
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			session.delete("chanboard.delete", num);
+			session.delete("chanrev.delete_rev", num);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if(session != null) session.close();
 		}
-
-	}
-
-	public void updateStep(int ref, int re_step) {
-		SqlSession session=null;
-		try {
-			session=MybatisManager.getInstance().openSession();
-			BoardDTO dto=new BoardDTO();
-			dto.setRef(ref);
-			dto.setRe_step(re_step);
-			session.update("chanboard.updateStep",dto);
-			session.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			if(session != null) session.close();
-		}
-
-
-	}
-
-	public void reply(BoardDTO dto) {
-		SqlSession session=null;
-		try {
-			session=MybatisManager.getInstance().openSession();
-			session.insert("chanboard.reply", dto);
-			session.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if(session != null) session.close();
-		}
-
+		
 	}
 
 	public void plusDown(int num) {
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			session.update("chanboard.plusDown", num);
+			session.update("chanrev.plusDown_rev", num);
 			session.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			if(session != null) session.close();
 		}
-
 	}
 
 	public int searchCount(String search_option) {
@@ -262,7 +258,7 @@ public class BoardDAO {
 		SqlSession session=null;
 		try {
 			session=MybatisManager.getInstance().openSession();
-			count=session.selectOne("chanboard.searchCount", search_option);
+			count=session.selectOne("chanrev.searchCount", search_option);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -270,9 +266,5 @@ public class BoardDAO {
 		}
 		return count;
 	}
-	
-	
-	
+
 }
-
-

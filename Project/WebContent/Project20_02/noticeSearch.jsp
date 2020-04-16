@@ -12,8 +12,6 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <%@ include file="../include/header.jsp"%>
 <script src="../include/jquery-3.4.1.min.js"></script>
@@ -36,7 +34,7 @@
 	});
 	
 	function list(page) {
-		location.href="${path}/chanboard_servlet/list.do?curPage="+page;
+		location.href="${path}/chanboard_servlet/list.do?curPage="+page+"&search_option=${search_option}&keyword=${keyword}";
 		
 	}
 	
@@ -426,6 +424,19 @@ th{
 	.btnFind_password:hover {
 	background-color: white;
 	color: #1b181b;
+	}
+		.dropdown-menu{
+	background-color: #1b181b;
+	}
+	.dropdown-menu>li>a{
+		color: white !important;
+	}
+	.dropdown-menu>li>a:hover{
+		color: black !important;
+		font-size: 1.25em;
+	}
+	.dropdown-header{
+		color: white !important;
 	}
 	
 
